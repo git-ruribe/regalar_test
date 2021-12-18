@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - USDZ exporter</title>
+		<title>RegalAR ... sitio de prueba</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link type="text/css" rel="stylesheet" href="main.css">
@@ -26,9 +26,7 @@
 
 	<body>
 		<div id="info">
-			<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> - USDZ exporter<br />
-			Battle Damaged Sci-fi Helmet by
-			<a href="https://sketchfab.com/theblueturtle_" target="_blank" rel="noopener">theblueturtle_</a>
+			Pruebas para exportar USDZ
 		</div>
 
 		<a id="link" rel="ar" href="" download="asset.usdz">
@@ -47,12 +45,17 @@
 
 			import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
 
-			let camera, scene, renderer;
+			//let camera, scene, renderer; para casco
+
+			let camera, scene, renderer, controls, clock, mixer // para plato
 
 			init();
-			render();
+			animate(); // esto es para animación plato aceituna
+			//render(); // esto es para casco
 
 			function init() {
+
+				clock = new THREE.Clock(); // para animación plato aceitunas
 
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
@@ -79,6 +82,11 @@
 
 				//loader.load( 'DamagedHelmet.gltf', async function ( gltf ) {
 
+					// animación del plato de aceitunas
+					mixer = new THREE.AnimationMixer( gltf.scene );
+					mixer.clipAction( gltf.animations[ 0 ] ).play();
+					//
+
 					scene.add( gltf.scene );
 
 					const shadowMesh = createSpotShadowMesh();
@@ -100,7 +108,7 @@
 
 				} );
 
-				const controls = new OrbitControls( camera, renderer.domElement );
+				controls = new OrbitControls( camera, renderer.domElement );
 				controls.addEventListener( 'change', render ); // use if there is no animation loop
 				controls.minDistance = 2;
 				controls.maxDistance = 10;
@@ -151,6 +159,18 @@
 			}
 
 			//
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				if ( mixer ) mixer.update( clock.getDelta() );
+
+				controls.update(); // required if damping enabled
+
+				render();
+
+				}
 
 			function render() {
 
