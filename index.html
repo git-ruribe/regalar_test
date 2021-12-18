@@ -45,6 +45,8 @@
 			import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 			import { USDZExporter } from './jsm/exporters/USDZExporter.js';
 
+			import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
+
 			let camera, scene, renderer;
 
 			init();
@@ -72,7 +74,7 @@
 
 				// modelo aceituunas
 				loader.setDRACOLoader( new DRACOLoader().setDecoderPath( 'js/libs/draco/gltf/' ) )
-				loader.load( 'IridescentDishWithOlives.glb', function ( gltf ) {
+				loader.load( 'IridescentDishWithOlives.glb', async function ( gltf ) {
 				//	
 
 				//loader.load( 'DamagedHelmet.gltf', async function ( gltf ) {
