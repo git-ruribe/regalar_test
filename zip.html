@@ -6,7 +6,7 @@
 
     <body>
 		<div id="info">
-			Pruebas para exportar USDZ - v1.01
+			Pruebas para exportar USDZ - v1.02
             <p></p>
             <input type="text" id="nombre">
             <p></p>
@@ -14,7 +14,7 @@
             <br>
             <p></p>
             <p></p>
-            <a id="usdzPlacer">
+            <a id="usdzPlacer" rel="" href="">
                 <img id="imagen" src="./USDA/BaseColor.png" width="300" height="300">
             </a>
             
@@ -150,12 +150,17 @@
                                 var file = new Blob(blob, "model/vnd.usdz+zip");
                                 url = URL.createObjectURL(file);
 
-                                var element = document.getElementById("usdzPlacer");
-                                element.rel = "ar"
-                                element.href = url
+                                var elementImagen = document.getElementById("imagen");
+                                elementImagen.src = ""
+
+                                var elementAR = document.getElementById("usdzPlacer");
+                                elementAR.rel = "ar"
+                                elementAR.href = url
                             } else {
                                 console.log("AR NO disponible");
-                                downloadX(blob, "toy2.usdz", "model/vnd.usdz+zip");
+                                var elementImagen = document.getElementById("imagen");
+                                elementImagen.src = ""
+                                //downloadX(blob, "toy2.usdz", "model/vnd.usdz+zip");
                             }
                         //downloadX(blob, "toy2.usdz", "model/vnd.usdz+zip");
                         console.log("OK");
