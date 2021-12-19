@@ -139,7 +139,7 @@
 
                 zip2.generateAsync({type:"blob"})
                     .then(function (blob) {
-                        downloadX(blob, "toy2.usdz", "application/zip");
+                        downloadX(blob, "toy2.usdz", "model/vnd.usdz+zip");
                         console.log("OK");
                     });
             }
