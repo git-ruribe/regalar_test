@@ -43,6 +43,8 @@
 			import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
 			import { USDZExporter } from './jsm/exporters/USDZExporter.js';
 
+			import { GLTFExporter } from './jsm/exporters/GLTFExporter.js';
+
 			import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
 
 			//let camera, scene, renderer; para casco
@@ -73,18 +75,21 @@
 				scene.background = new THREE.Color( 0xf0f0f0 );
 				scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
 
-				const loader = new GLTFLoader().setPath( 'models/glTF/' );
+				//const loader = new GLTFLoader().setPath( 'models/glTF/' );
 
 				// modelo aceituunas
-				loader.setDRACOLoader( new DRACOLoader().setDecoderPath( 'js/libs/draco/gltf/' ) )
-				loader.load( 'IridescentDishWithOlives.glb', async function ( gltf ) {
+				//loader.setDRACOLoader( new DRACOLoader().setDecoderPath( 'js/libs/draco/gltf/' ) )
+				//loader.load( 'IridescentDishWithOlives.glb', async function ( gltf ) {
 				//	
 
 				//loader.load( 'DamagedHelmet.gltf', async function ( gltf ) {
 
+					const loader = new GLTFLoader().setPath( 'models/glTF/phoenix_bird/' );
+					loader.load( 'scene.gltf', async function ( gltf ) {
+
 					// animación del plato de aceitunas
-					mixer = new THREE.AnimationMixer( gltf.scene );
-					mixer.clipAction( gltf.animations[ 0 ] ).play();
+					//mixer = new THREE.AnimationMixer( gltf.scene );
+					//mixer.clipAction( gltf.animations[ 0 ] ).play();
 					//
 
 					scene.add( gltf.scene );
@@ -105,6 +110,40 @@
 
 					const link = document.getElementById( 'link' );
 					link.href = URL.createObjectURL( blob );
+
+					/*
+					// GLTF
+
+					// Instantiate a exporter
+					const exporterGL = new GLTFExporter();
+
+					const options = {
+						trs: false,
+						onlyVisible: false,
+						truncateDrawRange: true,
+						binary: false,
+						animations: gltf.animations
+					};
+					// Parse the input and generate the glTF output
+					exporterGL.parse(
+						scene,
+						// called when the gltf has been generated
+						function ( result) {
+
+							const output = JSON.stringify( result, null, 2 );
+							console.log( output );
+							saveString( output, 'scene.gltf' );
+
+						},
+						// called when there is an error in the generation
+						function ( error ) {
+
+							console.log( 'An error happened' );
+
+						},
+						options
+					);
+					*/
 
 				} );
 
@@ -177,6 +216,28 @@
 				renderer.render( scene, camera );
 
 			}
+
+			/* 
+			// Para exportar un glTF
+			const link2 = document.createElement( 'a' );
+			link2.style.display = 'none';
+			document.body.appendChild( link2 ); // Firefox workaround, see #6594
+
+			function save( blob, filename ) {
+
+				link2.href = URL.createObjectURL( blob );
+				link2.download = filename;
+				link2.click();
+
+				// URL.revokeObjectURL( url ); breaks Firefox...
+
+			}
+
+			function saveString( text, filename ) {
+
+			save( new Blob( [ text ], { type: 'text/plain' } ), filename );
+
+			*/
 
 		</script>
 
