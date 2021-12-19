@@ -6,7 +6,7 @@
 
     <body>
 		<div id="info">
-			Pruebas para exportar USDZ - v1
+			Pruebas para exportar USDZ - v1.01
             <p></p>
             <input type="text" id="nombre">
             <p></p>
@@ -14,7 +14,7 @@
             <br>
             <p></p>
             <p></p>
-            <a id="usdzPlacer" rel="ar" >
+            <a id="usdzPlacer">
                 <img id="imagen" src="./USDA/BaseColor.png" width="300" height="300">
             </a>
             
@@ -151,6 +151,7 @@
                                 url = URL.createObjectURL(file);
 
                                 var element = document.getElementById("usdzPlacer");
+                                element.rel = "ar"
                                 element.href = url
                             } else {
                                 console.log("AR NO disponible");
