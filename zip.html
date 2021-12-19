@@ -6,7 +6,7 @@
 
     <body>
 		<div id="info">
-			Pruebas para exportar USDZ - v1.04
+			Pruebas para exportar USDZ - v1.05
             <p></p>
             <input type="text" id="nombre">
             <p></p>
@@ -151,7 +151,7 @@
                                 var url = URL.createObjectURL(file);
 
                                 var elementImagen = document.getElementById("imagen");
-                                elementImagen.src = ""
+                                elementImagen.src = "./USDA/BaseColor_0"
 
                                 var elementAR = document.getElementById("usdzPlacer");
                                 elementAR.rel = "ar"
@@ -159,11 +159,11 @@
                             } else {
                                 console.log("AR NO disponible");
                                 var elementImagen = document.getElementById("imagen");
-                                elementImagen.src = ""
+                                //elementImagen.src = ""
 
                                 console.log(url);
 
-                                //downloadX(blob, "toy2.usdz", "model/vnd.usdz+zip");
+                                downloadX(blob, "toy2.usdz", "model/vnd.usdz+zip");
                             }
                         //downloadX(blob, "toy2.usdz", "model/vnd.usdz+zip");
                         console.log("OK");
