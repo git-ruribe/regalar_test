@@ -6,7 +6,7 @@
 
     <body>
 		<div id="info">
-			Pruebas para exportar USDZ - v1.02
+			Pruebas para exportar USDZ - v1.03
             <p></p>
             <input type="text" id="nombre">
             <p></p>
@@ -147,8 +147,8 @@
                             // AR is available.
                                 console.log("AR disponible");
 
-                                var file = new Blob(blob, "model/vnd.usdz+zip");
-                                url = URL.createObjectURL(file);
+                                var file = new Blob([blob], {type:"model/vnd.usdz+zip"});
+                                var url = URL.createObjectURL(file);
 
                                 var elementImagen = document.getElementById("imagen");
                                 elementImagen.src = ""
@@ -160,6 +160,9 @@
                                 console.log("AR NO disponible");
                                 var elementImagen = document.getElementById("imagen");
                                 elementImagen.src = ""
+
+                                console.log(url);
+
                                 //downloadX(blob, "toy2.usdz", "model/vnd.usdz+zip");
                             }
                         //downloadX(blob, "toy2.usdz", "model/vnd.usdz+zip");
