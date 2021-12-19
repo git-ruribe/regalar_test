@@ -14,7 +14,7 @@
             <br>
             <p></p>
             <p></p>
-            <img id="imagen" src="./USDA/_BaseColor.png" width="300" height="300">
+            <img id="imagen" src="./USDA/BaseColor.png" width="300" height="300">
             <p></p>
             <p></p>
             <canvas hidden id="canvas" width="2048" height="2048">
@@ -44,7 +44,7 @@
                 };
             })}
 
-            addTextToImage("./USDA/_BaseColor.png", "El Pelos");
+            addTextToImage("./USDA/BaseColor.png", "El Pelos");
 
             var element = document.getElementById("blob");
                 element.onclick = function(event) {
@@ -115,7 +115,7 @@
                 var nombre = document.getElementById("nombre");
                 console.log(nombre.value);
 
-                await addTextToImage("./USDA/_BaseColor.png", nombre.value);
+                await addTextToImage("./USDA/BaseColor.png", nombre.value);
 
                 var canvas = document.getElementById("canvas");
                 var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
