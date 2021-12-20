@@ -15,19 +15,19 @@
             <input type="text" id="title">
             <p></p>
             <p></p>
-            <label for="line1">Title</label>
+            <label for="line1">1st Row</label>
             <input type="text" id="line1">
             <p></p>
             <p></p>
-            <label for="line2">Title</label>
+            <label for="line2">2nd Row</label>
             <input type="text" id="line2">
             <p></p>
             <p></p>
-            <label for="line3">Title</label>
+            <label for="line3">3rd Row</label>
             <input type="text" id="line3">
             <p></p>
             <p></p>
-            <label for="line4">Title</label>
+            <label for="line4">4th Row</label>
             <input type="text" id="line4">
             <p></p>
             <p></p>
@@ -49,7 +49,7 @@
             
             <p></p>
             <p></p>
-            <canvas hidden id="canvas" width="512" height="512">
+            <canvas hidden id="canvas" width="2048" height="2048">
 		</div>
 
 
@@ -60,9 +60,25 @@
 
         <script>
 
+            function createCanvas(width, height, set2dTransform = true) {
+                const ratio = Math.ceil(window.devicePixelRatio);
+                const canvas = document.createElement('canvas');
+                canvas.width = width * ratio;
+                canvas.height = height * ratio;
+                canvas.style.width = `${width}px`;
+                canvas.style.height = `${height}px`;
+                if (set2dTransform) {
+                    canvas.getContext('2d').setTransform(ratio, 0, 0, ratio, 0, 0);
+                }
+                return canvas;
+            }
+
+            var newCanvas = createCanvas(512,512)
+
             async function addTextToImage(imagePath, text0, text1="", text2="", text3="", text4="", text5="", x=242, y=367, weight="600", fontsize0="48", fontsize1="30", fontsize2="36", fontfamily="medusa", align="center") {
                 return new Promise(resolve =>{
                 var circle_canvas = document.getElementById("canvas");
+                //var circle_canvas = newCanvas
                 var context = circle_canvas.getContext("2d");
 
                 // Draw Image function
@@ -170,6 +186,7 @@
             async function generaUSDZ_C() {
 
                 var canvas = document.getElementById("canvas");
+                //canvas = newCanvas
                 var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
 
                 var zip2 = new JSZip();
