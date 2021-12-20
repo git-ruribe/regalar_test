@@ -38,7 +38,7 @@
             <br>
             <p></p>
             <p></p>
-            <button id="blob" class="btn btn-primary">click to download</button>
+            <button id="blob" class="btn btn-primary">Genera Regalo</button>
             <br>
             <p></p>
             <p></p>
@@ -195,6 +195,9 @@
 
             async function generaUSDZ_C() {
 
+                document.getElementById("blob").disabled = true
+                document.getElementById("tarjeta").disabled = true
+
                 var canvas = document.getElementById("canvas");
                 //canvas = newCanvas
                 var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
@@ -237,10 +240,16 @@
                                 var elementAR = document.getElementById("usdzPlacer");
                                 elementAR.rel = "ar"
                                 elementAR.href = url
+
+                                document.getElementById("blob").disabled = false
+                                document.getElementById("tarjeta").disabled = false
                             } else {
                                 console.log("AR NO disponible");
 
                                 downloadX(blob, "regalAR.usdz", "model/vnd.usdz+zip");
+
+                                document.getElementById("blob").disabled = false
+                                document.getElementById("tarjeta").disabled = false
                             }
                         //downloadX(blob, "toy2.usdz", "model/vnd.usdz+zip");
                         console.log("OK");
