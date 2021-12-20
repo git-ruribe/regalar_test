@@ -49,7 +49,7 @@
             
             <p></p>
             <p></p>
-            <canvas hidden id="canvas" width="4096" height="4096">
+            <canvas hidden id="canvas" width="512" height="512">
 		</div>
 
 
@@ -60,6 +60,7 @@
 
         <script>
 
+            /*
             function createCanvas(width, height, set2dTransform = true) {
                 const ratio = Math.ceil(window.devicePixelRatio);
                 const canvas = document.createElement('canvas');
@@ -74,6 +75,7 @@
             }
 
             var newCanvas = createCanvas(512,512)
+            */
 
             async function addTextToImage(imagePath, text0, text1="", text2="", text3="", text4="", text5="", x=242, y=367, weight="600", fontsize0="48", fontsize1="30", fontsize2="36", fontfamily="medusa", align="center") {
                 return new Promise(resolve =>{
@@ -81,14 +83,22 @@
                 //var circle_canvas = newCanvas
                 var context = circle_canvas.getContext("2d");
 
+
+                circle_canvas.style.width = "512px"
+                circle_canvas.style.height = "512px"
+
+                circle_canvas.width = 1024
+                circle_canvas.height = 1024
+
                 // Draw Image function
                 var img = new Image();
                 img.src = imagePath;
                 img.onload = function () {
+                    context.scale(2,2)
                     context.drawImage(img, 0, 0);
                     context.lineWidth = 1;
                     context.fillStyle = "#000000";
-                    context.lineStyle = "#ffffff";
+                    context.lineStyle = "#000000";
                     context.textAlign = align
                     context.scale(1,-1)
                     context.font = weight + " normal "+ fontsize0 +"px "+ fontfamily +",sans-serif";
