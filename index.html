@@ -9,7 +9,7 @@
 
     <body>
 		<div id="info">
-			Personaliza la tarjeta
+			Personaliza la Experiencia 0002
             <p></p>
             <label for="title">Title</label>
             <input type="text" id="title">
@@ -39,6 +39,10 @@
             <p></p>
             <p></p>
             <button id="blob" class="btn btn-primary">Genera Regalo</button>
+            <br>
+            <p></p>
+            <p></p>
+            <button hidden id="descarga" class="btn btn-primary">Descargar Regalo</button>
             <br>
             <p></p>
             <p></p>
@@ -121,6 +125,8 @@
             })}
 
             async function titlechange() {
+
+                document.getElementById("descarga").hidden = true;
                 
                 var text0 = document.getElementById("title").value;
                 var text1 = document.getElementById("line1").value;
@@ -197,6 +203,7 @@
 
                 document.getElementById("blob").disabled = true
                 document.getElementById("tarjeta").disabled = true
+                document.getElementById("descarga").hidden = true;
 
                 var canvas = document.getElementById("canvas");
                 //canvas = newCanvas
@@ -241,8 +248,15 @@
                                 elementAR.rel = "ar"
                                 elementAR.href = url
 
-                                document.getElementById("blob").disabled = false
-                                document.getElementById("tarjeta").disabled = false
+                                document.getElementById("blob").disabled = false;
+                                document.getElementById("tarjeta").disabled = false;
+
+                                
+                                document.getElementById("descarga").onclick = function(event) {
+                                    downloadX(blob, "regalAR.usdz", "model/vnd.usdz+zip");
+                                }
+                                document.getElementById("descarga").hidden = false;
+
                             } else {
                                 console.log("AR NO disponible");
 
