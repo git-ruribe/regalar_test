@@ -1,245 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>RegalAR ... sitio de prueba</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link type="text/css" rel="stylesheet" href="main.css">
-		<style>
-			body {
-				background-color: #eee;
-			}
-			#info {
-				color: #222;
-			}
-			a {
-				color: #00f
-			}
-			#button {
-				position: absolute;
-				bottom: 15px;
-				left: calc(50% - 40px);
+    <head>
+		<title>Experiencia 0002</title>
 
-			}
-		</style>
-	</head>
+        <link rel="stylesheet" href="https://use.typekit.net/oep8ygu.css"> 
 
-	<body>
+    </head>
+
+    <body>
 		<div id="info">
-			Pruebas para exportar USDZ
+			Personaliza la tarjeta
+            <p></p>
+            <label class="tk-medusa" for="title">Title</label>
+            <input type="text" id="title">
+            <p></p>
+            <p></p>
+            <label for="line1">Title</label>
+            <input type="text" id="line1">
+            <p></p>
+            <p></p>
+            <label for="line2">Title</label>
+            <input type="text" id="line2">
+            <p></p>
+            <p></p>
+            <label for="line3">Title</label>
+            <input type="text" id="line3">
+            <p></p>
+            <p></p>
+            <label for="line4">Title</label>
+            <input type="text" id="line4">
+            <p></p>
+            <p></p>
+            <label for="footer">Footer</label>
+            <input type="text" id="footer">
+            <p></p>
+            <button id="tarjeta" class="btn btn-primary">Genera Tarjeta</button>
+            <br>
+            <p></p>
+            <p></p>
+            <button id="blob" class="btn btn-primary">click to download</button>
+            <br>
+            <p></p>
+            <p></p>
+            <a id="usdzPlacer" rel="" href="">
+                <img id="imagen" src="./Card/0/Material_baseColor.png" width="512" height="512" style="-webkit-transform: scaleY(-1);
+                transform: scaleY(-1);">
+            </a>
+            
+            <p></p>
+            <p></p>
+            <canvas hidden id="canvas" width="512" height="512">
 		</div>
 
-		<a id="link" rel="ar" href="" download="asset.usdz">
-			<img id="button" width="100" src="files/arkit.png">
-		</a>
 
-		<script type="module">
-
-			import * as THREE from './build/three.module.js';
-
-			import { OrbitControls } from './jsm/controls/OrbitControls.js';
-			import { RoomEnvironment } from './jsm/environments/RoomEnvironment.js';
-
-			import { GLTFLoader } from './jsm/loaders/GLTFLoader.js';
-			import { USDZExporter } from './jsm/exporters/USDZExporter.js';
-
-			import { GLTFExporter } from './jsm/exporters/GLTFExporter.js';
-
-			import { DRACOLoader } from './jsm/loaders/DRACOLoader.js';
-
-			//let camera, scene, renderer; para casco
-
-			let camera, scene, renderer, controls, clock, mixer // para plato
-
-			init();
-			animate(); // esto es para animación plato aceituna
-			//render(); // esto es para casco
-
-			function init() {
-
-				clock = new THREE.Clock(); // para animación plato aceitunas
-
-				renderer = new THREE.WebGLRenderer( { antialias: true } );
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.toneMapping = THREE.ACESFilmicToneMapping;
-				renderer.outputEncoding = THREE.sRGBEncoding;
-				document.body.appendChild( renderer.domElement );
-
-				camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.25, 20 );
-				camera.position.set( - 2.5, 0.6, 3.0 );
-
-				const pmremGenerator = new THREE.PMREMGenerator( renderer );
-
-				scene = new THREE.Scene();
-				scene.background = new THREE.Color( 0xf0f0f0 );
-				scene.environment = pmremGenerator.fromScene( new RoomEnvironment(), 0.04 ).texture;
-
-				//const loader = new GLTFLoader().setPath( 'models/glTF/' );
-
-				// modelo aceituunas
-				//loader.setDRACOLoader( new DRACOLoader().setDecoderPath( 'js/libs/draco/gltf/' ) )
-				//loader.load( 'IridescentDishWithOlives.glb', async function ( gltf ) {
-				//	
-
-				//loader.load( 'DamagedHelmet.gltf', async function ( gltf ) {
-
-					const loader = new GLTFLoader().setPath( 'models/glTF/phoenix_bird/' );
-					loader.load( 'scene.gltf', async function ( gltf ) {
-
-					// animación del plato de aceitunas
-					//mixer = new THREE.AnimationMixer( gltf.scene );
-					//mixer.clipAction( gltf.animations[ 0 ] ).play();
-					//
-
-					scene.add( gltf.scene );
-
-					const shadowMesh = createSpotShadowMesh();
-					shadowMesh.position.y = - 1.1;
-					shadowMesh.position.z = - 0.25;
-					shadowMesh.scale.setScalar( 2 );
-					scene.add( shadowMesh );
-
-					render();
-
-					// USDZ
-
-					const exporter = new USDZExporter();
-					const arraybuffer = await exporter.parse( gltf.scene );
-					const blob = new Blob( [ arraybuffer ], { type: 'application/octet-stream' } );
-
-					const link = document.getElementById( 'link' );
-					link.href = URL.createObjectURL( blob );
-
-					/*
-					// GLTF
-
-					// Instantiate a exporter
-					const exporterGL = new GLTFExporter();
-
-					const options = {
-						trs: false,
-						onlyVisible: false,
-						truncateDrawRange: true,
-						binary: false,
-						animations: gltf.animations
-					};
-					// Parse the input and generate the glTF output
-					exporterGL.parse(
-						scene,
-						// called when the gltf has been generated
-						function ( result) {
-
-							const output = JSON.stringify( result, null, 2 );
-							console.log( output );
-							saveString( output, 'scene.gltf' );
-
-						},
-						// called when there is an error in the generation
-						function ( error ) {
-
-							console.log( 'An error happened' );
-
-						},
-						options
-					);
-					*/
-
-				} );
-
-				controls = new OrbitControls( camera, renderer.domElement );
-				controls.addEventListener( 'change', render ); // use if there is no animation loop
-				controls.minDistance = 2;
-				controls.maxDistance = 10;
-				controls.target.set( 0, - 0.15, - 0.2 );
-				controls.update();
-
-				window.addEventListener( 'resize', onWindowResize );
-
-			}
-
-			function createSpotShadowMesh() {
-
-				const canvas = document.createElement( 'canvas' );
-				canvas.width = 128;
-				canvas.height = 128;
-
-				const context = canvas.getContext( '2d' );
-				const gradient = context.createRadialGradient( canvas.width / 2, canvas.height / 2, 0, canvas.width / 2, canvas.height / 2, canvas.width / 2 );
-				gradient.addColorStop( 0.1, 'rgba(130,130,130,1)' );
-				gradient.addColorStop( 1, 'rgba(255,255,255,1)' );
-
-				context.fillStyle = gradient;
-				context.fillRect( 0, 0, canvas.width, canvas.height );
-
-				const shadowTexture = new THREE.CanvasTexture( canvas );
-
-				const geometry = new THREE.PlaneGeometry();
-				const material = new THREE.MeshBasicMaterial( {
-					map: shadowTexture, blending: THREE.MultiplyBlending, toneMapped: false
-				} );
-
-				const mesh = new THREE.Mesh( geometry, material );
-				mesh.rotation.x = - Math.PI / 2;
-
-				return mesh;
-
-			}
-
-			function onWindowResize() {
-
-				camera.aspect = window.innerWidth / window.innerHeight;
-				camera.updateProjectionMatrix();
-
-				renderer.setSize( window.innerWidth, window.innerHeight );
-
-				render();
-
-			}
-
-			//
-
-			function animate() {
-
-				requestAnimationFrame( animate );
-
-				if ( mixer ) mixer.update( clock.getDelta() );
-
-				controls.update(); // required if damping enabled
-
-				render();
-
-				}
-
-			function render() {
-
-				renderer.render( scene, camera );
-
-			}
-
-			/* 
-			// Para exportar un glTF
-			const link2 = document.createElement( 'a' );
-			link2.style.display = 'none';
-			document.body.appendChild( link2 ); // Firefox workaround, see #6594
-
-			function save( blob, filename ) {
-
-				link2.href = URL.createObjectURL( blob );
-				link2.download = filename;
-				link2.click();
-
-				// URL.revokeObjectURL( url ); breaks Firefox...
-
-			}
-
-			function saveString( text, filename ) {
-
-			save( new Blob( [ text ], { type: 'text/plain' } ), filename );
-
-			*/
-
-		</script>
-
-	</body>
+        <script type="module">
+
+			import './jszip/jszip.js';
+        </script>
+
+        <script>
+
+            async function addTextToImage(imagePath, text0, text1="", text2="", text3="", text4="", text5="", x=242, y=367, weight="600", fontsize0="48", fontsize1="30", fontsize2="36", fontfamily="medusa", align="center") {
+                return new Promise(resolve =>{
+                var circle_canvas = document.getElementById("canvas");
+                var context = circle_canvas.getContext("2d");
+
+                // Draw Image function
+                var img = new Image();
+                img.src = imagePath;
+                img.onload = function () {
+                    context.drawImage(img, 0, 0);
+                    context.lineWidth = 1;
+                    context.fillStyle = "#000000";
+                    context.lineStyle = "#ffffff";
+                    context.textAlign = align
+                    context.scale(1,-1)
+                    context.font = weight + " normal "+ fontsize0 +"px "+ fontfamily +",sans-serif";
+                    context.fillText(text0, x, -y);
+                    context.font = weight + " normal "+ fontsize1 +"px "+ fontfamily +",sans-serif";
+                    context.fillText(text1, x, -y+74);
+                    context.font = weight + " normal "+ fontsize1 +"px "+ fontfamily +",sans-serif";
+                    context.fillText(text2, x, -y+110);
+                    context.font = weight + " normal "+ fontsize1 +"px "+ fontfamily +",sans-serif";
+                    context.fillText(text3, x, -y+146);
+                    context.font = weight + " normal "+ fontsize1 +"px "+ fontfamily +",sans-serif";
+                    context.fillText(text4, x, -y+182);
+                    context.font = weight + " normal "+ fontsize2 +"px "+ fontfamily +",sans-serif";
+                    context.fillText(text5, x, -y+250);
+                    context.restore();
+                    
+                    //console.log(context.font);
+                    resolve()
+                };
+            })}
+
+            async function titlechange() {
+                
+                var text0 = document.getElementById("title").value;
+                var text1 = document.getElementById("line1").value;
+                var text2 = document.getElementById("line2").value;
+                var text3 = document.getElementById("line3").value;
+                var text4 = document.getElementById("line4").value;
+                var text5 = document.getElementById("footer").value;
+
+                imagePath = "./USDC/0/Material_baseColor.png"
+                console.log(text0);
+                await addTextToImage(imagePath, text0, text1=text1, text2=text2, text3=text3, text4=text4, text5=text5)
+
+                var canvas = document.getElementById("canvas");
+                var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+
+                //console.log(image);
+
+                var element = document.getElementById("imagen");
+                element.src = image
+
+                
+            }
+
+            var element = document.getElementById("blob");
+                element.onclick = function(event) {
+                    generaUSDZ_C()
+                console.log(event);
+            }
+
+            var element = document.getElementById("tarjeta");
+                element.onclick = function(event) {
+                    titlechange()
+                console.log(event);
+            }
+
+
+            function downloadX(data, filename, type) {
+                var file = new Blob([data], {type: type});
+                if (window.navigator.msSaveOrOpenBlob) // IE10+
+                    window.navigator.msSaveOrOpenBlob(file, filename);
+                else { // Others
+                    var a = document.createElement("a"),
+                            url = URL.createObjectURL(file);
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(function() {
+                        document.body.removeChild(a);
+                        window.URL.revokeObjectURL(url);  
+                    }, 0); 
+                }
+            }
+            
+            function loadBlob(filePath) {
+                return new Promise(resolve =>{
+                    var result = null;
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.open("GET", filePath, true);
+                    xmlhttp.responseType = "arraybuffer";
+
+                    xmlhttp.onload = function (oEvent) {
+                        var arrayBuffer = xmlhttp.response;
+
+                        resolve(arrayBuffer)
+                    }
+                    
+                    xmlhttp.send(null);
+                }
+                )
+            }
+
+            async function generaUSDZ_C() {
+
+                var canvas = document.getElementById("canvas");
+                var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+
+                var zip2 = new JSZip();
+                zip2.file("regalar.usdc",await loadBlob("./USDC/exp0002.usdc"))
+
+                zip2.file("0/Material.001_baseColor.png", await loadBlob(image))
+                zip2.file("0/05_Colibri_Bird_Body_baseColor.jpg", await loadBlob("./USDC/0/05_Colibri_Bird_Body_baseColor.jpg"))
+                zip2.file("0/Material_baseColor.png", await loadBlob("./USDC/0/Material_baseColor.png"))
+                zip2.file("0/Material.001_baseColor.jpg", await loadBlob("./USDC/0/Material.001_baseColor.jpg"))
+                zip2.file("0/Material.001_metallicRoughness_metal_scale0.jpg", await loadBlob("./USDC/0/Material.001_metallicRoughness_metal_scale0.jpg"))
+                zip2.file("0/Material.001_metallicRoughness_occl.jpg", await loadBlob("./USDC/0/Material.001_metallicRoughness_occl.jpg"))
+                zip2.file("0/Material.001_metallicRoughness_rough_scale2.jpg", await loadBlob("./USDC/0/Material.001_metallicRoughness_rough_scale2.jpg"))
+                zip2.file("0/Material.002_baseColor.jpg", await loadBlob("./USDC/0/Material.002_baseColor.jpg"))
+                zip2.file("0/Material.002_metallicRoughness_metal_scale0.jpg", await loadBlob("./USDC/0/Material.002_metallicRoughness_metal_scale0.jpg"))
+                zip2.file("0/Material.002_metallicRoughness_occl.jpg", await loadBlob("./USDC/0/Material.002_metallicRoughness_occl.jpg"))
+                zip2.file("0/Material.002_metallicRoughness_rough_scale1.jpg", await loadBlob("./USDC/0/Material.002_metallicRoughness_rough_scale1.jpg"))
+                zip2.file("0/Material.004_baseColor.jpg", await loadBlob("./USDC/0/Material.004_baseColor.jpg"))
+                zip2.file("0/Material.005_baseColor.jpg", await loadBlob("./USDC/0/Material.005_baseColor.jpg"))
+                zip2.file("0/Material.005_metallicRoughness_metal_scale0.jpg", await loadBlob("./USDC/0/Material.005_metallicRoughness_metal_scale0.jpg"))
+                zip2.file("0/Material.005_metallicRoughness_occl.jpg", await loadBlob("./USDC/0/Material.005_metallicRoughness_occl.jpg"))
+                zip2.file("0/Material.005_metallicRoughness_rough_scale3.jpg", await loadBlob("./USDC/0/Material.005_metallicRoughness_rough_scale3.jpg"))
+                zip2.file("0/Material.006_baseColor.jpg", await loadBlob("./USDC/0/Material.006_baseColor.jpg"))
+
+
+                zip2.generateAsync({type:"blob"})
+                    .then(function (blob) {
+                        const a = document.createElement("a");
+                            if (a.relList.supports("ar")) {
+                            // AR is available.
+                                console.log("AR disponible");
+
+                                var file = new Blob([blob], {type:"model/vnd.usdz+zip"});
+                                var url = URL.createObjectURL(file);
+
+                                var elementImagen = document.getElementById("imagen");
+                                elementImagen.src = "./USDA/BaseColor_0.png"
+
+                                var elementAR = document.getElementById("usdzPlacer");
+                                elementAR.rel = "ar"
+                                elementAR.href = url
+                            } else {
+                                console.log("AR NO disponible");
+
+                                downloadX(blob, "regalAR.usdz", "model/vnd.usdz+zip");
+                            }
+                        //downloadX(blob, "toy2.usdz", "model/vnd.usdz+zip");
+                        console.log("OK");
+                    });
+            }
+            
+
+
+            function loadFile(filePath) {
+                var result = null;
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", filePath, false);
+                xmlhttp.send();
+                if (xmlhttp.status==200) {
+                    result = xmlhttp.responseText;
+                }
+            return result;
+            }
+
+
+        </script>
+
+
+</body>
 </html>
