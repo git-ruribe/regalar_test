@@ -40,7 +40,7 @@
             <div>
             <a href="#home"  style="
             text-decoration: none;
-            font-size: calc((2 - 1) * 1.2vh + 1rem);">Regal-AR</a>
+            font-size: calc((2 - 1) * 1.2vh + 1rem);">3D fine    art</a>
             <!-- Float links to the right. Hide them on small screens -->
             <div style="font-size: calc((1.2 - 1) * 1.2vw + 1rem);">   
             </div>
@@ -114,6 +114,36 @@
                 </div>
             </div>
 
+            <div style="
+            display: flex;
+            flex-wrap: nowrap;
+            flex-shrink: 1;
+            flex-grow: 0;
+            flex-direction:row;">
+            <div style="
+                font-size: calc((1.2 - 1) * 1.2vh + 1rem);
+                margin-top: 2rem;
+                margin-right: 0px;
+                margin-bottom: 0rem;
+                margin-left: 0px;
+                max-width: 500px;
+                height: auto;">
+                <b>Make it yours!</b>
+                <p>
+                 -The card on this item can be personalized.
+                </p>
+                <p>
+                -The piece can be download as an Augmanted Reality Experience. (USDZ file compatible with Apple Devices running iOS12+)
+                </p>
+            </div>
+        </div>
+
+        <div hidden style="font-family: medusa, serif;
+        font-size: 30px;
+        font-weight: 600;">
+            Write your own card.
+        </div>
+
             <div>
             <br><br>
             <label for="title">Title</label>
@@ -139,15 +169,15 @@
             <label for="footer">Footer</label>
             <input type="text" id="footer">
             <p></p>
-            <button id="tarjeta" class="btn btn-primary">Genera Tarjeta</button>
+            <button id="tarjeta" class="btn btn-primary">1. Write Card</button>
             <br>
             <p></p>
             <p></p>
-            <button id="blob" class="btn btn-primary">Genera Regalo</button>
+            <button disabled id="blob" class="btn btn-primary">2. Put Card on Piece</button>
             <br>
             <p></p>
             <p></p>
-            <button hidden id="descarga" class="btn btn-primary">Descargar Regalo</button>
+            <button disabled id="descarga" class="btn btn-primary">3. Download AR Experience</button>
             <br>
             <p></p>
             <p></p>
@@ -159,15 +189,51 @@
             <p></p>
             <p></p>
             <canvas hidden id="canvas" width="512" height="512"></canvas>
-            <div style="font-family: medusa, serif">
-                Carga el Font para la Tarjeta
-            </div>
+
 		</div>
 
 
         <script type="module">
 
 			import './jszip/jszip.js';
+
+        </script>
+
+        <script>
+            (function(d) {
+            var config = {
+                kitId: 'oep8ygu',
+                scriptTimeout: 3000,
+                async: true,
+                loading: function() {
+                    // JavaScript to execute when fonts start loading
+                    console.log("loading");
+                },
+                active: function() {
+                    // JavaScript to execute when fonts become active
+                    console.log("active");
+                    titlechange()
+                },
+                inactive: function() {
+                    // JavaScript to execute when fonts become inactive
+                    console.log("inactive");
+                }
+            },
+            h=d.documentElement,
+            t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},
+            config.scriptTimeout),
+            tk=d.createElement("script"),
+            f=false,
+            s=d.getElementsByTagName("script")[0],
+            a;
+            h.className+=" wf-loading";
+            tk.src='https://use.typekit.net/'+config.kitId+'.js';
+            tk.async=true;
+            tk.onload=tk.onreadystatechange=function(){a=this.readyState;
+            if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);
+            try{Typekit.load(config)}catch(e){}};
+            s.parentNode.insertBefore(tk,s)
+            })(document);
         </script>
 
         <script>
@@ -178,8 +244,7 @@
             document.getElementById("line3").value = "Hummingbirds are native to America"
             document.getElementById("line4").value = "and there are about 360 species."
             document.getElementById("footer").value = "Touch this card for a surprise."
-
-            titlechange()
+            
 
             /*
             function createCanvas(width, height, set2dTransform = true) {
@@ -243,7 +308,8 @@
 
             async function titlechange() {
 
-                document.getElementById("descarga").hidden = true;
+                document.getElementById("blob").disabled = true;
+                document.getElementById("descarga").disabled = true;
                 
                 var text0 = document.getElementById("title").value;
                 var text1 = document.getElementById("line1").value;
@@ -253,7 +319,7 @@
                 var text5 = document.getElementById("footer").value;
 
                 imagePath = "./USDC/0/Material_baseColor.png"
-                console.log(text0);
+                //console.log(text0);
                 await addTextToImage(imagePath, text0, text1=text1, text2=text2, text3=text3, text4=text4, text5=text5)
 
                 var canvas = document.getElementById("canvas");
