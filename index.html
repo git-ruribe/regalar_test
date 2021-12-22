@@ -12,7 +12,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
 
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><!-- solo para imagen responsiva -->
 
         <link rel="stylesheet" href="https://use.typekit.net/oep8ygu.css"> 
 
@@ -94,6 +94,26 @@
             </div>
 
             <div style="
+                display: flex;
+                flex-wrap: nowrap;
+                flex-shrink: 1;
+                flex-grow: 0;
+                flex-direction:row;">
+            <div style="
+            margin-top: 2rem;
+            margin-right: 0px;
+            margin-bottom: 0rem;
+            margin-left: 0px;
+            max-width: 500px;
+            height: auto;">
+            “This work includes  
+                <a href="https://sketchfab.com/3d-models/cactus-ad35efa0aa204e4aab85e66775e3121f">Cactus</a> 
+                 by <a href="https://sketchfab.com/wuheppost">cheleguu</a> 
+                 licensed under CC BY 4.0.”
+            </div>
+            </div>
+
+            <div style="
             display: flex;
             flex-wrap: nowrap;
             flex-shrink: 1;
@@ -130,10 +150,13 @@
                 height: auto;">
                 <b>Make it yours!</b>
                 <p>
-                 -The card on this item can be personalized.
+                 - Customize card contents to make a gift or to design your own unique piece.
                 </p>
                 <p>
-                -The piece can be download as an Augmanted Reality Experience. (USDZ file compatible with Apple Devices running iOS12+)
+                -The piece can be then download as an Augmanted Reality Experience.
+                </p>
+                <p style="font-size: small;">
+                * Requires a device running iPadOS or iOS 12 or later.
                 </p>
             </div>
         </div>
@@ -144,45 +167,76 @@
             Write your own card.
         </div>
 
+        <style>
+
+            label {
+              max-width: 500px;  
+              width: 100%;
+              display:block;
+            }
+            
+            input[type=text], select {
+              max-width: 500px;  
+              width: 100%;
+              padding: 12px 20px;
+              margin: 8px 0;
+              display: inline-block;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              box-sizing: border-box;
+              display:block;
+            }
+            
+            button {
+              max-width: 500px;  
+              width: 100%;
+              background-color: #e4e4e4;
+              color: rgb(0, 0, 0);
+              padding: 14px 20px;
+              margin: 8px 0;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+              display:block;
+              font-weight: 400;
+            }
+
+            button:disabled {
+              max-width: 500px;  
+              width: 100%;
+              background-color: #e4e4e4;
+              color: rgb(255, 255, 255);
+              padding: 14px 20px;
+              margin: 8px 0;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+              display:block;
+              
+            }
+
+            
+            </style>
+
             <div>
             <br><br>
-            <label for="title">Title</label>
-            <input type="text" id="title">
-            <p></p>
-            <p></p>
-            <label for="line1">1st Row</label>
-            <input type="text" id="line1">
-            <p></p>
-            <p></p>
-            <label for="line2">2nd Row</label>
-            <input type="text" id="line2">
-            <p></p>
-            <p></p>
-            <label for="line3">3rd Row</label>
-            <input type="text" id="line3">
-            <p></p>
-            <p></p>
-            <label for="line4">4th Row</label>
-            <input type="text" id="line4">
-            <p></p>
-            <p></p>
-            <label for="footer">Footer</label>
-            <input type="text" id="footer">
-            <p></p>
-            <button id="tarjeta" class="btn btn-primary">1. Write Card</button>
-            <br>
-            <p></p>
-            <p></p>
-            <button disabled id="blob" class="btn btn-primary">2. Put Card on Piece</button>
-            <br>
-            <p></p>
-            <p></p>
-            <button disabled id="descarga" class="btn btn-primary">3. Download AR Experience</button>
-            <br>
-            <p></p>
-            <p></p>
+            <label for="title">Card Title</label>
+            <input type="text" id="title" maxlength="20">
+            <label for="line1">Content 1st Row</label>
+            <input type="text" id="line1" maxlength="40">
+            <label for="line2">Content 2nd Row</label>
+            <input type="text" id="line2" maxlength="40">
+            <label for="line3">Content 3rd Row</label>
+            <input type="text" id="line3" maxlength="40">
+            <label for="line4">Comtent 4th Row</label>
+            <input type="text" id="line4" maxlength="40">
+            <label for="footer">Card Footer</label>
+            <input type="text" id="footer" maxlength="20">
+            <button id="tarjeta" class="btn btn-primary">Customize Card</button>
+            <button disabled id="blob" class="btn btn-primary">Remake 3D Model</button>
+            <button disabled id="descarga" class="btn btn-primary">Download</button>
             <a id="usdzPlacer" rel="" href="">
-                <img class="w3-image" id="imagen" src="./USDC/0/Material_baseColor.png" width="300" height="300" style="-webkit-transform: scaleY(-1);
+                <img class="w3-image" id="imagen" src="./USDC/0/Material_baseColor.png" width="500" height="auto" style="-webkit-transform: scaleY(-1);
                 transform: scaleY(-1);">
             </a>
             
@@ -341,7 +395,8 @@
 
             var element = document.getElementById("tarjeta");
                 element.onclick = function(event) {
-                    titlechange()
+                    titlechange();
+                    document.getElementById("blob").disabled = false;
                 console.log(event);
             }
 
@@ -384,9 +439,12 @@
 
             async function generaUSDZ_C() {
 
-                document.getElementById("blob").disabled = true
+                
+                document.getElementById("blob").innerHTML = "WORKING ... plese wait";
+                document.getElementById("blob").style.color = "red";
+                document.getElementById("blob").disabled = true;
                 document.getElementById("tarjeta").disabled = true
-                document.getElementById("descarga").hidden = true;
+                document.getElementById("descarga").disabled = true;
 
                 var canvas = document.getElementById("canvas");
                 //canvas = newCanvas
@@ -431,6 +489,8 @@
                                 elementAR.rel = "ar"
                                 elementAR.href = url
 
+                                document.getElementById("blob").innerHTML = "Remake 3D Model";
+                                document.getElementById("blob").style.color = "black";
                                 document.getElementById("blob").disabled = false;
                                 document.getElementById("tarjeta").disabled = false;
 
@@ -438,21 +498,23 @@
                                 document.getElementById("descarga").onclick = function(event) {
                                     downloadX(blob, "regalAR.usdz", "model/vnd.usdz+zip");
                                 }
-                                document.getElementById("descarga").hidden = false;
+                                document.getElementById("descarga").disabled = false;
 
                             } else {
                                 console.log("AR NO disponible");
 
                                 var elementImagen = document.getElementById("imagen");
-                                elementImagen.src = "./USDC/thumb0002.png"
+                                elementImagen.src = "thumb1920ready.png"
 
+                                document.getElementById("blob").innerHTML = "Remake 3D Model";
+                                document.getElementById("blob").style.color = "black";
                                 document.getElementById("blob").disabled = false
                                 document.getElementById("tarjeta").disabled = false
 
                                 document.getElementById("descarga").onclick = function(event) {
                                     downloadX(blob, "regalAR.usdz", "model/vnd.usdz+zip");
                                 }
-                                document.getElementById("descarga").hidden = false;
+                                document.getElementById("descarga").disabled = false;
 
                                 
                             }
