@@ -114,7 +114,7 @@
                 <a href="https://sketchfab.com/3d-models/cactus-ad35efa0aa204e4aab85e66775e3121f">Cactus</a> 
                  by <a href="https://sketchfab.com/wuheppost">cheleguu</a> 
                  licensed under CC BY 4.0 and other models under <a href="https://sketchfab.com/licenses#full">SketchFab Standard License</a>.”
-                 <p style="font-size: small;">Due to copyright restricions this exprience is not offered and should not be dowloaded as a standalone file.</p>
+                 <p style="font-size: small;">Due to copyright restricions this exprience is not offered and should not be dowloaded as a standalone file from this page.</p>
             </div>
             </div>
 
@@ -133,7 +133,7 @@
 
                     width: 500px;
                     height: auto;">
-                    <a id="usdz" rel="ar" href="experiences/0004/exp0004.usdz">
+                    <a id="usdz" rel="ar" href="">
                         <img src="/thumbnails/0004.png" width="100%" height=auto>
                     </a>
                 </div>
@@ -303,6 +303,7 @@
             const b = document.createElement("a");
                 if (b.relList.supports("ar")) {
                     document.getElementById("ARcapable").hidden = false;
+                    document.getElementById("usdz").href = "experiences/0004/exp0004.usdz"
                 }
 
 
