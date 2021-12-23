@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-		<title>Exp1 Box + Butterfly</title>
+		<title>Fly Free</title>
         
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -141,7 +141,7 @@
                 </div>
             </div>
 
-            <div id="ARcapable"> <!-- Hay que poner hidden-->
+            <div id="ARcapable"> <!-- Hay que poner hidden cuando tiene Copyright-->
             <div style="
             display: flex;
             flex-wrap: nowrap;
@@ -243,6 +243,7 @@
             <input type="text" id="footer" maxlength="20">
             <button id="tarjeta" class="btn btn-primary">Customize Card</button>
             <button disabled id="blob" class="btn btn-primary">Remake 3D Model</button>
+            <button disabled id="descarga" class="btn btn-primary">Download</button>
 
             <a id="usdzPlacer" rel="" href="">
                 <img class="w3-image" id="imagen" src="./USDC/0/Material_baseColor.png" width="500" height="auto" style="-webkit-transform: scaleY(-1);
@@ -458,7 +459,8 @@
                 document.getElementById("blob").innerHTML = "WORKING ... plese wait";
                 document.getElementById("blob").style.color = "red";
                 document.getElementById("blob").disabled = true;
-                document.getElementById("tarjeta").disabled = true
+                document.getElementById("tarjeta").disabled = true;
+                document.getElementById("descarga").disabled = true;
 
                 var canvas = document.getElementById("canvas");
                 //canvas = newCanvas
@@ -508,6 +510,12 @@
                                 document.getElementById("blob").disabled = false;
                                 document.getElementById("tarjeta").disabled = false;
 
+                                document.getElementById("descarga").onclick = function(event) {
+                                    downloadX(blob, "regalAR.usdz", "model/vnd.usdz+zip");
+                                }
+
+                                document.getElementById("descarga").disabled = false;
+
 
                             } else {
                                 console.log("AR NO disponible");
@@ -519,6 +527,12 @@
                                 document.getElementById("blob").style.color = "black";
                                 document.getElementById("blob").disabled = false
                                 document.getElementById("tarjeta").disabled = false
+
+                                document.getElementById("descarga").onclick = function(event) {
+                                    downloadX(blob, "regalAR.usdz", "model/vnd.usdz+zip");
+                                }
+
+                                document.getElementById("descarga").disabled = false;
                                 
                             }
                         //downloadX(blob, "toy2.usdz", "model/vnd.usdz+zip");

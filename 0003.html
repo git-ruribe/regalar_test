@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-		<title>The Visitant</title>
+		<title>Call Me</title>
         
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,7 +72,7 @@
         ">
             <div style="
             font-size: calc((2.8 - 1) * 1.2vh + 1rem);">
-            The Visitant
+            Call Me
             </div>
 
             <div style="
@@ -89,7 +89,7 @@
                     margin-left: 0px;
                     max-width: 500px;
                     height: auto;">
-                    This AR experience combines two of the most beautiful things on nature: a Cactus Flower and a Hummingbird. Native American cultures believe that the cactus represents warmth, protection, and motherly love. Because cacti plants can survive in harsh conditions, they've become a symbol of unconditional, maternal love. Hummingbirds are native to America and Aztecs believed that fallen warriors would return as hummingbirds. To many people the hummingbird symbolizes joy, healing and good luck.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
                 </div>
                 
             </div>
@@ -111,10 +111,12 @@
                 * AR viewing requires a device running iPadOS or iOS 12 or later.
                 </p>
             “This work of art includes  
-                <a href="https://sketchfab.com/3d-models/cactus-ad35efa0aa204e4aab85e66775e3121f">Cactus</a> 
-                 by <a href="https://sketchfab.com/wuheppost">cheleguu</a> 
-                 licensed under CC BY 4.0 and other models under <a href="https://sketchfab.com/licenses#full">SketchFab Standard License</a>.”
-                 <p style="font-size: small;">Due to copyright restricions this exprience is not offered and should not be dowloaded as a standalone file.</p>
+                <a href="https://sketchfab.com/3d-models/music-box-f76c3804b9df45e3a3e0d4b41f548583">Music Box</a> 
+                 by <a href="https://sketchfab.com/Reaps6">HenryP-F</a> and  
+                 <a href="https://sketchfab.com/3d-models/butterfly-wael-tsar-97c552b03c3343e783670de61e6d179a">Butterfly - Wael Tsar</a> 
+                 by <a href="https://sketchfab.com/wael.tsar">Wael Tsar/a>
+                 licensed under CC BY 4.0 ”
+                 <p style="font-size: small;">The models on this page are also under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 license.</a></p>
             </div>
             </div>
 
@@ -133,13 +135,13 @@
 
                     width: 500px;
                     height: auto;">
-                    <a id="usdz" rel="ar" href="experiences/0004/exp0004.usdz">
-                        <img src="/thumbnails/0004.png" width="100%" height=auto>
+                    <a id="usdz" rel="ar" href="experiences/0003/exp0003.usdz">
+                        <img src="/thumbnails/0003.png" width="100%" height=auto>
                     </a>
                 </div>
             </div>
 
-            <div hidden id="ARcapable">
+            <div id="ARcapable"> <!-- Hay que poner hidden cuando tiene Copyright-->
             <div style="
             display: flex;
             flex-wrap: nowrap;
@@ -157,14 +159,14 @@
                 height: auto;">
                 <b>Your message in your space!</b>
                 <p>
-                 - Customize card contents and place this experience wherever you want.
+                 - Customize a gift card and place this experience wherever you want.
                 </p>
                 <p>
                 - Take a picture or shot a video and share with your loved ones.
                 </p>
-            </div>
-            <div>
-                <img src="exp0001a.gif" width="125px" height=auto style="padding: 12px; padding-top: 0px;">
+                <p>
+                - Download your customized experience to share by message or email.
+                </p>
             </div>
         </div>
 
@@ -241,6 +243,7 @@
             <input type="text" id="footer" maxlength="20">
             <button id="tarjeta" class="btn btn-primary">Customize Card</button>
             <button disabled id="blob" class="btn btn-primary">Remake 3D Model</button>
+            <button disabled id="descarga" class="btn btn-primary">Download</button>
 
             <a id="usdzPlacer" rel="" href="">
                 <img class="w3-image" id="imagen" src="./USDC/0/Material_baseColor.png" width="500" height="auto" style="-webkit-transform: scaleY(-1);
@@ -306,12 +309,12 @@
                 }
 
 
-            document.getElementById("title").placeholder = "The Hummingbird"
-            document.getElementById("line1").placeholder  = "Aztecs believed that fallen warriors"
-            document.getElementById("line2").placeholder  = "would return to earth as hummingbirds."
-            document.getElementById("line3").placeholder  = "Hummingbirds are native to America"
-            document.getElementById("line4").placeholder  = "and there are about 360 species."
-            document.getElementById("footer").placeholder  = "Touch here to call one."
+            document.getElementById("title").placeholder = "Fly Free"
+            document.getElementById("line1").placeholder  = "Enjoy this AR Experience"
+            document.getElementById("line2").placeholder  = "and customize this card"
+            document.getElementById("line3").placeholder  = "to make a special gift"
+            document.getElementById("line4").placeholder  = "for your loved ones."
+            document.getElementById("footer").placeholder  = "3dfine.art"
             
 
             /*
@@ -456,7 +459,8 @@
                 document.getElementById("blob").innerHTML = "WORKING ... plese wait";
                 document.getElementById("blob").style.color = "red";
                 document.getElementById("blob").disabled = true;
-                document.getElementById("tarjeta").disabled = true
+                document.getElementById("tarjeta").disabled = true;
+                document.getElementById("descarga").disabled = true;
 
                 var canvas = document.getElementById("canvas");
                 //canvas = newCanvas
@@ -506,6 +510,12 @@
                                 document.getElementById("blob").disabled = false;
                                 document.getElementById("tarjeta").disabled = false;
 
+                                document.getElementById("descarga").onclick = function(event) {
+                                    downloadX(blob, "regalAR.usdz", "model/vnd.usdz+zip");
+                                }
+
+                                document.getElementById("descarga").disabled = false;
+
 
                             } else {
                                 console.log("AR NO disponible");
@@ -517,6 +527,12 @@
                                 document.getElementById("blob").style.color = "black";
                                 document.getElementById("blob").disabled = false
                                 document.getElementById("tarjeta").disabled = false
+
+                                document.getElementById("descarga").onclick = function(event) {
+                                    downloadX(blob, "regalAR.usdz", "model/vnd.usdz+zip");
+                                }
+
+                                document.getElementById("descarga").disabled = false;
                                 
                             }
                         //downloadX(blob, "toy2.usdz", "model/vnd.usdz+zip");
