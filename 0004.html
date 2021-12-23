@@ -168,7 +168,7 @@
             </div>
         </div>
 
-        <div hidden style="font-family: medusa, serif;
+        <div hidden style="font-family: ocr-a-std, serif;
         font-size: 30px;
         font-weight: 600;">
             Write your own card.
@@ -332,7 +332,7 @@
             var newCanvas = createCanvas(512,512)
             */
 
-            async function addTextToImage(imagePath, text0, text1="", text2="", text3="", text4="", text5="", x=257, y=367, weight="600", fontsize0="48", fontsize1="30", fontsize2="40", fontfamily="medusa", align="center") {
+            async function addTextToImage(imagePath, text0, text1="", text2="", text3="", text4="", text5="", x=257, y=367, weight="600", fontsize0="48", fontsize1="30", fontsize2="40", fontfamily="ocr-a-std", align="center") {
                 return new Promise(resolve =>{
                 var circle_canvas = document.getElementById("canvas");
                 //var circle_canvas = newCanvas
@@ -496,7 +496,7 @@
                                 var url = URL.createObjectURL(file);
 
                                 var elementImagen = document.getElementById("imagen");
-                                elementImagen.src = "./USDC/thumb0002.png"
+                                elementImagen.src = "./thumbnails/0004ready.png"
 
                                 var elementAR = document.getElementById("usdzPlacer");
                                 elementAR.rel = "ar"
@@ -512,7 +512,7 @@
                                 console.log("AR NO disponible");
 
                                 var elementImagen = document.getElementById("imagen");
-                                elementImagen.src = "thumb1920ready.png"
+                                elementImagen.src = "./thumbnails/0004ready.png"
 
                                 document.getElementById("blob").innerHTML = "Remake 3D Model";
                                 document.getElementById("blob").style.color = "black";
