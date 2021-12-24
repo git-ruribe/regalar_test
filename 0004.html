@@ -466,7 +466,7 @@
                 var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
 
                 var zip2 = new JSZip();
-                zip2.file("regalar.usdc",await loadBlob("./experiences/0004/exp0004_m.usdc"))
+                zip2.file("regalar.usdc",await loadBlob("./experiences/0004/exp0004_NoCard.usdc"))
 
                 zip2.file("0/music.mp3", await loadBlob("./experiences/0004/0/music.mp3"))
 
