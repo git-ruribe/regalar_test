@@ -89,7 +89,7 @@
                     margin-left: 0px;
                     max-width: 500px;
                     height: auto;">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
+                    Tarjeta corregida ... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
                 </div>
                 
             </div>
@@ -114,8 +114,11 @@
                 <a href="https://sketchfab.com/3d-models/music-box-f76c3804b9df45e3a3e0d4b41f548583">Music Box</a> 
                  by <a href="https://sketchfab.com/Reaps6">HenryP-F</a> and  
                  <a href="https://sketchfab.com/3d-models/butterfly-wael-tsar-97c552b03c3343e783670de61e6d179a">Butterfly - Wael Tsar</a> 
-                 by <a href="https://sketchfab.com/wael.tsar">Wael Tsar/a>
-                 licensed under CC BY 4.0 ”
+                 by <a href="https://sketchfab.com/wael.tsar">Wael Tsar</a>
+                 licensed under CC BY 4.0
+                 <p>
+                    Music by <a href="/users/julius_h-3921568/?tab=audio&amp;utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=audio&amp;utm_content=5501">Julius_H</a> from <a href="https://pixabay.com/music/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=5501">Pixabay</a>”
+                </p>
                  <p style="font-size: small;">The models on this page are also under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 license.</a></p>
             </div>
             </div>
@@ -135,7 +138,7 @@
 
                     width: 500px;
                     height: auto;">
-                    <a id="usdz" rel="ar" href="experiences/0003/exp0003.usdz">
+                    <a id="usdz" rel="ar" href="experiences/0003/exp0003_m.usdz">
                         <img src="/thumbnails/0003.png" width="100%" height=auto>
                     </a>
                 </div>
@@ -170,7 +173,7 @@
             </div>
         </div>
 
-        <div hidden style="font-family: medusa, serif;
+        <div hidden style="font-family: ocr-a-std, serif;
         font-size: 30px;
         font-weight: 600;">
             Write your own card.
@@ -230,17 +233,17 @@
             <div>
             <br><br>
             <label for="title">Card Title</label>
-            <input type="text" id="title" maxlength="20">
+            <input type="text" id="title" maxlength="15">
             <label for="line1">Content 1st Row</label>
-            <input type="text" id="line1" maxlength="40">
+            <input type="text" id="line1" maxlength="23">
             <label for="line2">Content 2nd Row</label>
-            <input type="text" id="line2" maxlength="40">
+            <input type="text" id="line2" maxlength="23">
             <label for="line3">Content 3rd Row</label>
-            <input type="text" id="line3" maxlength="40">
+            <input type="text" id="line3" maxlength="23">
             <label for="line4">Content 4th Row</label>
-            <input type="text" id="line4" maxlength="40">
+            <input type="text" id="line4" maxlength="23">
             <label for="footer">Card Footer</label>
-            <input type="text" id="footer" maxlength="20">
+            <input type="text" id="footer" maxlength="17">
             <button id="tarjeta" class="btn btn-primary">Customize Card</button>
             <button disabled id="blob" class="btn btn-primary">Remake 3D Model</button>
             <button disabled id="descarga" class="btn btn-primary">Download</button>
@@ -310,11 +313,11 @@
 
 
             document.getElementById("title").placeholder = "Fly Free"
-            document.getElementById("line1").placeholder  = "Enjoy this AR Experience"
-            document.getElementById("line2").placeholder  = "and customize this card"
-            document.getElementById("line3").placeholder  = "to make a special gift"
-            document.getElementById("line4").placeholder  = "for your loved ones."
-            document.getElementById("footer").placeholder  = "3dfine.art"
+            document.getElementById("line1").placeholder  = "Open your heart and"
+            document.getElementById("line2").placeholder  = "mind like the wings of "
+            document.getElementById("line3").placeholder  = "a butterfly. See then"
+            document.getElementById("line4").placeholder  = "how high you can fly."
+            document.getElementById("footer").placeholder  = "Zeenat Aman"
             
 
             /*
@@ -334,7 +337,7 @@
             var newCanvas = createCanvas(512,512)
             */
 
-            async function addTextToImage(imagePath, text0, text1="", text2="", text3="", text4="", text5="", x=257, y=367, weight="600", fontsize0="48", fontsize1="30", fontsize2="40", fontfamily="medusa", align="center") {
+            async function addTextToImage(imagePath, text0, text1="", text2="", text3="", text4="", text5="", x=257, y=367, weight="600", fontsize0="48", fontsize1="30", fontsize2="40", fontfamily="ocr-a-std", align="center") {
                 return new Promise(resolve =>{
                 var circle_canvas = document.getElementById("canvas");
                 //var circle_canvas = newCanvas
@@ -467,25 +470,20 @@
                 var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
 
                 var zip2 = new JSZip();
-                zip2.file("regalar.usdc",await loadBlob("./USDC/exp0002.usdc"))
+                zip2.file("regalar.usdc",await loadBlob("./experiences/0001/exp0001_m.usdc"))
 
-                zip2.file("0/Material.001_baseColor.png", await loadBlob(image))
-                zip2.file("0/05_Colibri_Bird_Body_baseColor.jpg", await loadBlob("./USDC/0/05_Colibri_Bird_Body_baseColor.jpg"))
-                zip2.file("0/Material_baseColor.png", await loadBlob("./USDC/0/Material_baseColor.png"))
-                zip2.file("0/Material.001_baseColor.jpg", await loadBlob("./USDC/0/Material.001_baseColor.jpg"))
-                zip2.file("0/Material.001_metallicRoughness_metal_scale0.jpg", await loadBlob("./USDC/0/Material.001_metallicRoughness_metal_scale0.jpg"))
-                zip2.file("0/Material.001_metallicRoughness_occl.jpg", await loadBlob("./USDC/0/Material.001_metallicRoughness_occl.jpg"))
-                zip2.file("0/Material.001_metallicRoughness_rough_scale2.jpg", await loadBlob("./USDC/0/Material.001_metallicRoughness_rough_scale2.jpg"))
-                zip2.file("0/Material.002_baseColor.jpg", await loadBlob("./USDC/0/Material.002_baseColor.jpg"))
-                zip2.file("0/Material.002_metallicRoughness_metal_scale0.jpg", await loadBlob("./USDC/0/Material.002_metallicRoughness_metal_scale0.jpg"))
-                zip2.file("0/Material.002_metallicRoughness_occl.jpg", await loadBlob("./USDC/0/Material.002_metallicRoughness_occl.jpg"))
-                zip2.file("0/Material.002_metallicRoughness_rough_scale1.jpg", await loadBlob("./USDC/0/Material.002_metallicRoughness_rough_scale1.jpg"))
-                zip2.file("0/Material.004_baseColor.jpg", await loadBlob("./USDC/0/Material.004_baseColor.jpg"))
-                zip2.file("0/Material.005_baseColor.jpg", await loadBlob("./USDC/0/Material.005_baseColor.jpg"))
-                zip2.file("0/Material.005_metallicRoughness_metal_scale0.jpg", await loadBlob("./USDC/0/Material.005_metallicRoughness_metal_scale0.jpg"))
-                zip2.file("0/Material.005_metallicRoughness_occl.jpg", await loadBlob("./USDC/0/Material.005_metallicRoughness_occl.jpg"))
-                zip2.file("0/Material.005_metallicRoughness_rough_scale3.jpg", await loadBlob("./USDC/0/Material.005_metallicRoughness_rough_scale3.jpg"))
-                zip2.file("0/Material.006_baseColor.jpg", await loadBlob("./USDC/0/Material.006_baseColor.jpg"))
+                zip2.file("0/music.mp3", await loadBlob("./experiences/0001/0/music.mp3"))
+
+                zip2.file("1/Material.001_baseColor.png", await loadBlob(image))
+                zip2.file("1/Material_baseColor.png", await loadBlob("./experiences/0001/1/Material_baseColor.png"))
+
+                zip2.file("1/mat1_baseColor.jpg", await loadBlob("./experiences/0001/1/mat1_baseColor.jpg"))
+                zip2.file("1/phong1_baseColor.jpg", await loadBlob("./experiences/0001/1/phong1_baseColor.jpg"))
+                zip2.file("1/phong1_metallicRoughness_metal.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_metal.jpg"))
+                zip2.file("1/phong1_metallicRoughness_rough_scale0.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough_scale0.jpg"))
+                zip2.file("1/phong1_metallicRoughness_rough_scale1.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough_scale1.jpg"))
+                zip2.file("1/phong1_metallicRoughness_rough_scale2.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough_scale2.jpg"))
+                zip2.file("1/phong1_metallicRoughness_rough.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough.jpg"))
 
 
                 zip2.generateAsync({type:"blob"})
@@ -499,7 +497,7 @@
                                 var url = URL.createObjectURL(file);
 
                                 var elementImagen = document.getElementById("imagen");
-                                elementImagen.src = "./USDC/thumb0002.png"
+                                elementImagen.src = "./thumbnails/0003ready.png"
 
                                 var elementAR = document.getElementById("usdzPlacer");
                                 elementAR.rel = "ar"
@@ -521,7 +519,7 @@
                                 console.log("AR NO disponible");
 
                                 var elementImagen = document.getElementById("imagen");
-                                elementImagen.src = "thumb1920ready.png"
+                                elementImagen.src = "./thumbnails/0003ready.png"
 
                                 document.getElementById("blob").innerHTML = "Remake 3D Model";
                                 document.getElementById("blob").style.color = "black";
