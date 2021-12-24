@@ -468,6 +468,8 @@
                 var zip2 = new JSZip();
                 zip2.file("regalar.usdc",await loadBlob("./experiences/0004/exp0004_m.usdc"))
 
+                zip2.file("0/music.mp3", await loadBlob("./experiences/0004/0/music.mp3"))
+
                 zip2.file("1/Material.001_baseColor.png", await loadBlob(image))
 
                 zip2.file("1/05_Colibri_Bird_Body_baseColor.jpg", await loadBlob("./experiences/0004/1/05_Colibri_Bird_Body_baseColor.jpg"))
