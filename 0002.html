@@ -111,10 +111,12 @@
                 * AR viewing requires a device running iPadOS or iOS 12 or later.
                 </p>
             “This work of art includes  
-                <a href="https://sketchfab.com/3d-models/music-box-f76c3804b9df45e3a3e0d4b41f548583">Music Box</a> 
-                 by <a href="https://sketchfab.com/Reaps6">HenryP-F</a> and  
-                 <a href="https://sketchfab.com/3d-models/butterfly-wael-tsar-97c552b03c3343e783670de61e6d179a">Butterfly - Wael Tsar</a> 
-                 by <a href="https://sketchfab.com/wael.tsar">Wael Tsar</a>
+                <a href="https://sketchfab.com/3d-models/magical-gyroscope-a3f110c0d2944a2dbff78709eb8f3984">Magical gyroscope</a> 
+                 by <a href="https://sketchfab.com/reddification">reddification</a> ,  
+                 <a href="https://sketchfab.com/3d-models/some-furniture-403f2737ce9e466092242169a813676d">some furniture</a> 
+                 by <a href="https://sketchfab.com/AtTheSpeedOf">AtTheSpeedOf</a> and
+                 <a href="https://sketchfab.com/3d-models/spinels-gem-a8619c5c2f484422ae495440538a104c">Spinel's gem</a> 
+                 by <a href="https://sketchfab.com/kloworks">KloWorks</a>
                  licensed under CC BY 4.0
                  <p>
                     Music by <a href="/users/zakharvalaha-22836301/?tab=audio&amp;utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=audio&amp;utm_content=8643">ZakharValaha</a> from <a href="https://pixabay.com/music/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=music&amp;utm_content=8643">Pixabay</a>”
@@ -312,12 +314,12 @@
                 }
 
 
-            document.getElementById("title").placeholder = "Fly Free"
-            document.getElementById("line1").placeholder  = "Open your heart and"
-            document.getElementById("line2").placeholder  = "mind like the wings of "
-            document.getElementById("line3").placeholder  = "a butterfly. See then"
-            document.getElementById("line4").placeholder  = "how high you can fly."
-            document.getElementById("footer").placeholder  = "Zeenat Aman"
+            document.getElementById("title").placeholder = "Take Care"
+            document.getElementById("line1").placeholder  = "'It is only with the"
+            document.getElementById("line2").placeholder  = "heart that one can"
+            document.getElementById("line3").placeholder  = "see rightly'"
+            document.getElementById("line4").placeholder  = "A. de Saint-Exupéry"
+            document.getElementById("footer").placeholder  = "The Little Prince"
             
 
             /*
@@ -470,20 +472,21 @@
                 var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
 
                 var zip2 = new JSZip();
-                zip2.file("regalar.usdc",await loadBlob("./experiences/0001/exp0001_m.usdc"))
+                zip2.file("regalar.usdc",await loadBlob("./experiences/0002/exp0002_m.usdc"))
 
-                zip2.file("0/music.mp3", await loadBlob("./experiences/0001/0/music.mp3"))
+                zip2.file("0/music.mp3", await loadBlob("./experiences/0002/0/music.mp3"))
 
-                zip2.file("1/Material.001_baseColor.png", await loadBlob(image))
-                zip2.file("1/Material_baseColor.png", await loadBlob("./experiences/0001/1/Material_baseColor.png"))
+                zip2.file("1/baseColor-1.png", await loadBlob(image))
+                zip2.file("2/Material_baseColor.png", await loadBlob("./experiences/0002/2/Material_baseColor.png"))
 
-                zip2.file("1/mat1_baseColor.jpg", await loadBlob("./experiences/0001/1/mat1_baseColor.jpg"))
-                zip2.file("1/phong1_baseColor.jpg", await loadBlob("./experiences/0001/1/phong1_baseColor.jpg"))
-                zip2.file("1/phong1_metallicRoughness_metal.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_metal.jpg"))
-                zip2.file("1/phong1_metallicRoughness_rough_scale0.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough_scale0.jpg"))
-                zip2.file("1/phong1_metallicRoughness_rough_scale1.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough_scale1.jpg"))
-                zip2.file("1/phong1_metallicRoughness_rough_scale2.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough_scale2.jpg"))
-                zip2.file("1/phong1_metallicRoughness_rough.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough.jpg"))
+                zip2.file("1/endtable1_baseColor.jpg", await loadBlob("./experiences/0002/1/endtable1_baseColor.jpg"))
+                zip2.file("1/endtable1_metallicRoughness_metal.jpg", await loadBlob("./experiences/0002/1/endtable1_metallicRoughness_metal.jpg"))
+                zip2.file("1/endtable1_metallicRoughness_rough.jpg", await loadBlob("./experiences/0002/1/endtable1_metallicRoughness_rough.jpg"))
+                zip2.file("1/endtable1_normal.jpg", await loadBlob("./experiences/0002/1/endtable1_normal.jpg"))
+                zip2.file("1/Gyroscope_baseColor.png", await loadBlob("./experiences/0002/1/Gyroscope_baseColor.png"))
+                zip2.file("1/Gyroscope_emissive.png", await loadBlob("./experiences/0002/1/Gyroscope_emissive.png"))
+                zip2.file("1/Gyroscope_metallicRoughness.png", await loadBlob("./experiences/0002/1/Gyroscope_metallicRoughness.png"))
+                zip2.file("1/Gyroscope_normal.png", await loadBlob("./experiences/0002/1/Gyroscope_normal.png"))
 
 
                 zip2.generateAsync({type:"blob"})
