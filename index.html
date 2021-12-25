@@ -132,11 +132,16 @@
         -webkit-text-size-adjust: 100%;
         ">
 
+        <!-- https://cloudconvert.com/png-to-webp -->
         <div class="row">
             <div class="column">
                 <div class ="item">
                     <a id="usdz" href="0001.html">
-                        <img src="/thumbnails/0001.png" width="100%" height=auto>
+                        <picture>
+                            <source type="image/webp" srcset="/thumbnails/0001.webp">
+                            <source type="image/png" srcset="/thumbnails/0001.png">
+                            <img src="/thumbnails/0001.png" width="100%" height=auto>
+                          </picture>                 
                     </a>
                     Fly Free
                 </div>
