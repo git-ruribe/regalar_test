@@ -12,8 +12,9 @@ Allow: /thumbnails/0001.png
 Allow: /thumbnails/0002.png
 Allow: /thumbnails/0003.png
 Allow: /thumbnails/0004.png
-Disallow: /USDC/
 Disallow: /about.txt
-Disallow: /Hummingbird.usdz
 Disallow: /README.md
 Disallow: /zip.html
+Disallow: /main.css
+Disallow: /oep8ygu.css
+Disallow: /w3.css
