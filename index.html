@@ -56,7 +56,6 @@
           flex: 50%;
           max-width: 50%;
           padding-right: 6vw;
-          
         }
         
         .column img {
@@ -87,6 +86,43 @@
             max-width: 100%;
           }
         }
+
+        h1 {
+          font-family: orpheuspro,serif;
+          font-weight: 400;
+          font-style: normal;
+          padding-left: 6vw;
+          font-size: calc((1.8 - 1) * 1.2vh + 1rem);
+        }
+
+        h2 {
+          font-family: orpheuspro,serif;
+          font-weight: 400;
+          font-style: normal;
+          padding-left: 6vw;
+          font-size: calc((1.4 - 1) * 1.2vh + 1rem);
+        }
+
+        .texto {
+          font-family: orpheuspro,serif;
+          font-weight: 400;
+          font-style: normal;
+          padding-left: 6vw;
+          font-size: calc((1.2 - 1) * 1.2vh + 1rem);
+          margin-top: 2rem;
+          margin-right: 0px;
+          margin-bottom: 0rem;
+          margin-left: 0px;
+          max-width: 1000px;
+          height: auto;
+          padding-left: 6vw;
+          padding-bottom: 6vw;
+        }
+
+        .tab2 {
+            tab-size: 4;
+        }
+
         </style>
 
     <body style="
@@ -100,7 +136,7 @@
         <!-- Navbar (sit on top) -->
         <div style="
             padding: 6vw;
-            font-size: calc((1.2 - 1) * 1.2vh + 1rem);
+            font-size: calc(1rem);
             font-family: orpheuspro,serif;
             font-weight: 400;
             font-style: normal;
@@ -109,12 +145,19 @@
             line-height: 1.4em;
             ">
             <div>
-            <a href="#home"  style="
+              <div class="column">
+            <div >
+            <a  href="#home"  style="
             text-decoration: none;
-            font-size: calc((2 - 1) * 1.2vh + 1rem);">3D fine art</a>
-            <!-- Float links to the right. Hide them on small screens -->
-            <div style="font-size: calc((1.2 - 1) * 1.2vw + 1rem);">   
+            font-size: calc((2 - 1) * 1.2vh + 1rem);"><strong>3D fine art</strong></a>
             </div>
+          </div>
+          <div class="column"></div>
+            <!-- Float links to the right. Hide them on small screens -->
+            <div style="padding-top: 20px;"><div style="font-size: calc((1.2 - 1) * 1.2vw + 1rem);">
+              <a href="#FAQ">FAQ</a> &emsp; <a href="#Contribute">Contribute</a> &emsp; <a href="#About">About</a> 
+            </div>
+          </div>
             </div>
         </div>
 
@@ -126,6 +169,26 @@
             </div>
         </header>
         -->
+
+    <div id="Intro">
+      <h1>
+        The Metaverse Gift Shop
+      </h1>
+      <h2>
+        "Give AR Experiences, Not Stuff"
+      </h2>
+      <div class="texto">
+        <p>
+          Welcome to the first <strong>Customizable AR Experiences Gift Shop</strong>. Combining great 3D models, clever animations, sound and music you will amaze the recipient of your virtual gift.
+        </p>
+        <p>
+          Our AR experiences take advantage of <strong>AR Quick Look</strong> to let users see and hear <strong>incredibly detailed object renderings</strong> in a real-world surrounding. An iPhone or iPad with ios12 or newer is reuired for viewing. You can create the experience in almost any web browser.
+        </p>
+        <p>
+          We try to make this site as simple as possible to use, but we know that for many of our visitors this is the first time using Augmented Reality so please visit the FAQ section in case you have any doubts.
+        </p>
+    </div>
+    </div>    
 
 		<div id="info" style="
         padding-top: 3.3vw;
@@ -189,14 +252,12 @@
                 </div> 
                 
             </div>
+            
 
-            <div style="
-                display: flex;
-                flex-wrap: nowrap;
-                flex-shrink: 1;
-                flex-grow: 0;
-                flex-direction:row;">
-                <div style="
+
+            <div id="FAQ" >
+              <h1 style="padding-left: 0px;">FAQ</h1>
+              <div style="
                     font-size: calc((1.2 - 1) * 1.2vh + 1rem);
                     margin-top: 2rem;
                     margin-right: 0px;
@@ -205,13 +266,73 @@
                     max-width: 1000px;
                     height: auto;
                     padding-right: 6vw;">
-                    <p>
-                    We hope you find here compelling Augmented Reality Experiences to amaze you and your loved ones. Please enjoy and share this pieces of 3D art that we have carefully designed.
-                    </p>
-                    <p>
-                    copyright 2021 3dfine.art
-                    </p>
+              <p>
+                <strong>What is an Augmented Reality Experience?</strong>
+              </p>
+              <p>
+                An Augmented Reality (AR) involves displaying virtual content, usually a 3D model, in the real world through your phone display and camera. We introduce the "Experience" component providing interactions and animations that let the user "play" with the AR content.
+              <br><br>
+              </p>
+              <p>
+                <strong>Do I need an iPhone to create and visualize AR Experiences?</strong>
+              </p>
+              <p>
+                You need an iPhone with ios 12 or newer to visualize the experiences. You can customize the experiences and send to another device from almost any web browser.
+              <br><br>
+              </p>
+            <p>
+              <strong>How can I customize the AR Experiences in 3Dfine.art?</strong>
+            </p>
+            <p>
+              You can customize the gift card in each experience creating your own unique file to keep or share as a gift.
+            <br><br>
+            </p>
+            <p>
+              <strong>How can send my own custom AR Experience to other user?</strong>
+            </p>
+            <p>
+              First you need to Download your experience to your device, then you can share the downloaded file by email, Air-drop, Message, Whats App and many other apps as an attachment. If you're using an iPhon, please refer to <a href="https://support.apple.com/en-us/HT206481">Files Documentation</a> on Apple website.
+            <br><br>
+            </p>
+              </div>
+            </div>
+
+            <div id="Contribute" >
+              <h1 style="padding-left: 0px;">Contribute</h1>
+              <div style="
+                    font-size: calc((1.2 - 1) * 1.2vh + 1rem);
+                    margin-top: 2rem;
+                    margin-right: 0px;
+                    margin-bottom: 0rem;
+                    margin-left: 0px;
+                    max-width: 1000px;
+                    height: auto;
+                    padding-right: 6vw;">
+              <p>
+                If you want to share your AR Experiences through our site please contact <a href="mailto:3dfineart@esd.mx">3dfineart</a>
+              </p>
+              </div>
+              </div>
+
+              <div id="About" >
+                <h1 style="padding-left: 0px;">Contribute</h1>
+                <div style="
+                      font-size: calc((1.2 - 1) * 1.2vh + 1rem);
+                      margin-top: 2rem;
+                      margin-right: 0px;
+                      margin-bottom: 0rem;
+                      margin-left: 0px;
+                      max-width: 1000px;
+                      height: auto;
+                      padding-right: 6vw;">
+                <p>
+                  3dfine.art is a project in development of Electronic Systems Design SA de CV. 
+                </p>
+                <p>AR Experiences are licensed under CC BY 4.0. Other site contents Copyright 2021</p>
                 </div>
+                </div>
+              
+
                 
             </div>
 
