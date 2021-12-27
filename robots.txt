@@ -12,6 +12,10 @@ Allow: /thumbnails/0001.png
 Allow: /thumbnails/0002.png
 Allow: /thumbnails/0003.png
 Allow: /thumbnails/0004.png
+Allow: /thumbnails/0001.webp
+Allow: /thumbnails/0002.webp
+Allow: /thumbnails/0003.webp
+Allow: /thumbnails/0004.webp
 Disallow: /about.txt
 Disallow: /README.md
 Disallow: /zip.html
