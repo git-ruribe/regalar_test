@@ -33,6 +33,23 @@
         gtag('config', 'AW-10830928366');
         </script>
 
+        <!-- Event snippet for Download 0002 Take Care conversion page
+        In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+        <script>
+            function gtag_report_conversion(url) {
+            var callback = function () {
+                if (typeof(url) != 'undefined') {
+                window.location = url;
+                }
+            };
+            gtag('event', 'conversion', {
+                'send_to': 'AW-10830928366/TeeDCMO23YwDEO6zy6wo',
+                'event_callback': callback
+            });
+            return false;
+            }
+        </script>
+
     </head>
 
     <body style="
@@ -512,6 +529,10 @@
 
                 zip2.generateAsync({type:"blob"})
                     .then(function (blob) {
+
+                        // Reportar Conversión
+                        goog_report_conversion()
+                        
                         const a = document.createElement("a");
                             if (a.relList.supports("ar")) {
                             // AR is available.

@@ -34,6 +34,23 @@
         gtag('config', 'AW-10830928366');
         </script>
 
+        <!-- Event snippet for Custom 0004 The Vistant conversion page
+        In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+        <script>
+            function gtag_report_conversion(url) {
+            var callback = function () {
+                if (typeof(url) != 'undefined') {
+                window.location = url;
+                }
+            };
+            gtag('event', 'conversion', {
+                'send_to': 'AW-10830928366/ToHJCJCW3owDEO6zy6wo',
+                'event_callback': callback
+            });
+            return false;
+            }
+        </script>
+
     </head>
 
     <body style="
@@ -107,7 +124,7 @@
                     margin-left: 0px;
                     max-width: 500px;
                     height: auto;">
-                    This AR experience combines two of the most beautiful things on nature: a Cactus Flower and a Hummingbird. Native American cultures believe that the cactus represents warmth, protection, and motherly love. Because cacti plants can survive in harsh conditions, they've become a symbol of unconditional, maternal love. Hummingbirds are native to America and Aztecs believed that fallen warriors would return as hummingbirds. To many people the hummingbird symbolizes joy, healing and good luck.
+                    This AR experience combines two of the most beautiful things on nature: A Cactus Flower and a Hummingbird. Native American cultures believe that the cactus represents warmth, protection, and motherly love. Because cacti plants can survive in harsh conditions, they've become a symbol of unconditional, maternal love. Hummingbirds are native to America and Aztecs believed that fallen warriors would return as hummingbirds. To many people the hummingbird symbolizes joy, healing and good luck.
                 </div>
                 
             </div>
@@ -514,6 +531,10 @@
 
                 zip2.generateAsync({type:"blob"})
                     .then(function (blob) {
+
+                            // Reportar Conversión
+                            goog_report_conversion()
+
                         const a = document.createElement("a");
                             if (a.relList.supports("ar")) {
                             // AR is available.
