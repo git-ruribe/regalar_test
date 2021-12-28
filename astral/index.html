@@ -11,6 +11,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<!-- https://developers.google.com/ar/develop/webxr/model-viewer -->
+		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
 	</head>
 	<body class="is-preload">
 
@@ -171,13 +175,6 @@
 									<canvas hidden id="canvas" width="512" height="512"></canvas>
 								</div>
 
-								<model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
-									ios-src="https://modelviewer.dev/shared-assets/models/Astronaut.usdz"
-									alt="A 3D model of an astronaut"
-									ar
-									auto-rotate
-									camera-controls></model-viewer>
-
 							</article>
 						
 						
@@ -190,6 +187,15 @@
 							<div id="step1" class="icon fa-square"><span>&ensp; Select an AR Experience</span></div>
 							<div id="step2" class="icon fa-square"><span>&ensp; Write Card Message</span></div>
 							<div id="step3" class="icon fa-square"><span>&ensp; Custom AR Experience Ready</span></div>
+
+
+							<model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+								ios-src="/experiences/0001/exp0001_m.usdz"
+								alt="A 3D model of an astronaut"
+								ar
+								auto-rotate
+								camera-controls>
+							</model-viewer>
 
 							<section>
 								<div class="row" style="padding-top: 20px;">
@@ -223,9 +229,6 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
-			<!-- https://developers.google.com/ar/develop/webxr/model-viewer -->
-			<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
 			<script>
 
