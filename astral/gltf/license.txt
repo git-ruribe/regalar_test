@@ -1,0 +1,11 @@
+Model Information:
+* title:	Music Box
+* source:	https://sketchfab.com/3d-models/music-box-f76c3804b9df45e3a3e0d4b41f548583
+* author:	HenryP-F (https://sketchfab.com/Reaps6)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Music Box" (https://sketchfab.com/3d-models/music-box-f76c3804b9df45e3a3e0d4b41f548583) by HenryP-F (https://sketchfab.com/Reaps6) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
