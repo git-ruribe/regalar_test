@@ -30,20 +30,22 @@
 
 						<!-- Me -->
 							<article id="home" class="panel intro">
+								
 								<header>
 									<h1>3D Fine Art</h1>
-									<p>Give AR Expereinces, Not Stuff</p>
+									<p>Give AR Experiences, Not Things</p>
 								</header>
 								<a href="#work" class="jumplink pic">
 									<span class="arrow icon solid fa-chevron-right"><span>Select an experience</span></span>
-									<img src="images/girl-g408c21a7b_640.jpg" alt="" />
+									<img src="images/girl.jpg" alt="" />
 								</a>
+							
 							</article>
 
 						<!-- Work -->
 							<article id="work" class="panel">
 								<header>
-									<h2>Select</h2>
+									<h2>Select an AR Experience</h2>
 								</header>
 								<p>
 									Choose one of our Interactive Multimedia Augmented Reality Experiences.
@@ -51,7 +53,7 @@
 								<section>
 									<div class="row">
 										<div class="col-4 col-6-medium col-12-small">
-											<a id="usdz" href="#card" class="image fit">
+											<a id="t0001" href="#card" class="image fit" onclick="seleccion('0001')">
 												<picture>
 													<source type="image/webp" srcset="/thumbnails/0001.webp">
 													<source type="image/png" srcset="/thumbnails/0001.png">
@@ -61,7 +63,7 @@
 											<strong>Fly Free</strong> <small>by RU72</small>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
-											<a id="usdz" href="#card" class="image fit">
+											<a id="t0002" href="#card" class="image fit" onclick="seleccion('0002')">
 												<picture>
 													<source type="image/webp" srcset="/thumbnails/0002.webp">
 													<source type="image/png" srcset="/thumbnails/0002.png">
@@ -71,7 +73,7 @@
 											<strong>Take Care</strong> <small>by RU72</small>
 										</div>   
 										<div class="col-4 col-6-medium col-12-small">
-											<a id="usdz" href="#card" class="image fit">
+											<a id="t0003" href="#card" class="image fit" onclick="seleccion('0003')">
 												<picture>
 													<source type="image/webp" srcset="/thumbnails/0003.webp">
 													<source type="image/png" srcset="/thumbnails/0003.png">
@@ -80,8 +82,8 @@
 											</a>
 											<strong>Call Me</strong> <small>by RU72</small>
 										</div>
-										<div class="col-4 col-6-medium col-12-small">
-											<a id="usdz" href="#card" class="image fit">
+										<div class="col-4 col-6-medium col-12-small" onclick="seleccion('0004')">
+											<a id="t0004" href="#card" class="image fit">
 												<picture>
 													<source type="image/webp" srcset="/thumbnails/0004.webp">
 													<source type="image/png" srcset="/thumbnails/0004.png">
@@ -92,27 +94,35 @@
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
 											<a href="#" class="image fit"><img src="images/pic05.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
 											<a href="#" class="image fit"><img src="images/pic06.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
 											<a href="#" class="image fit"><img src="images/pic07.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
 											<a href="#" class="image fit"><img src="images/pic08.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
 											<a href="#" class="image fit"><img src="images/pic09.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
 											<a href="#" class="image fit"><img src="images/pic10.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
 											<a href="#" class="image fit"><img src="images/pic11.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
 											<a href="#" class="image fit"><img src="images/pic12.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
 										</div>
 									</div>
 								</section>
@@ -121,26 +131,46 @@
 						<!-- Contact -->
 							<article id="card" class="panel">
 								<header>
-									<h2>Write a gift card</h2>
+									<h2>Write a Gift Card Message</h2>
 								</header>
+								<p>
+									The card will be included in your customized Augmented Reality Experience.
+								</p>
 								<form action="#getAR">
 									<div>
 										<div class="row">
-											<div class="col-6 col-12-medium">
-												<input type="text" name="title" placeholder="Title" />
+											<div class="col-12">
+												<input type="text" id="title" name="title" placeholder="Title (15 chars)" maxlength="15" onchange="cardchange()"/>
+											</div>
+
+											<div class="col-12" >
+												<input type="text" id="line1" name="line1" placeholder="Card Row 1 (23 chars)" maxlength="23" onchange="cardchange()"/>
+											</div>
+											<div class="col-12" style="padding-top: 3px;">
+												<input type="text" id="line2" name="line2" placeholder="Card Row 2 (23 chars)" maxlength="23" onchange="cardchange()"/>
+											</div>
+											<div class="col-12" style="padding-top: 3px;">
+												<input type="text" id="line3" name="line3" placeholder="Card Row 3 (23 chars)" maxlength="23" onchange="cardchange()"/>
+											</div>
+											<div class="col-12" style="padding-top: 3px;">
+												<input type="text" id="line4" name="line4" placeholder="Card Row 4 (23 chars)" maxlength="23" onchange="cardchange()"/>
 											</div>
 											<div class="col-12">
-												<textarea name="message" placeholder="Message" rows="6"></textarea>
+												<input type="text" id="bottom" name="bottom" placeholder="Footer (17 chars)" maxlength="15" onchange="cardchange()"/>
 											</div>
 											<div class="col-12">
-												<input type="text" name="footer" placeholder="Footer" />
-											</div>
-	
-											<div class="col-12">
-												<input type="submit" value="Use Card" />
+												<input type="button" value="Attach the Card to AR Experience " onclick="messageWriten()"/>
 											</div>
 									</div>
 								</form>
+
+								<div class="row" style="padding-top: 40px;">
+									<img id="imagen" class="col-6 col-12-medium col-12-small" src="/experiences/Material_baseColor.png" height="auto" style="-webkit-transform: scaleY(-1);
+									transform: scaleY(-1);">
+							
+									<canvas hidden id="canvas" width="512" height="512"></canvas>
+								</div>
+
 							</article>
 						
 						
@@ -149,14 +179,19 @@
 							<header>
 								<h2>Test and Send</h2>
 							</header>
+
+							<div id="step1" class="icon fa-square"><span>&ensp; Select an AR Experience</span></div>
+							<div id="step2" class="icon fa-square"><span>&ensp; Write Card Message</span></div>
+							<div id="step3" class="icon fa-square"><span>&ensp; Custom AR Experience Ready</span></div>
+
 							<section>
-								<div class="row">
+								<div class="row" style="padding-top: 20px;">
 									<div class="col-12 col-12-medium col-12-small">
-										<a id="usdz" rel="ar" href="/experiences/0001/exp0001_m.usdz">
+										<a hidden id="usdz" rel="ar" href="/experiences/0001/exp0001_m.usdz">
 											<picture>
-												<source type="image/webp" srcset="/thumbnails/0001.webp">
-												<source type="image/png" srcset="/thumbnails/0001.png">
-												<img src="/thumbnails/0001.png" width="100%" height=auto>
+												<source id="usdzWEBP" type="image/webp" srcset="/thumbnails/0001.webp">
+												<source  id="usdzPNG"type="image/png" srcset="/thumbnails/0001.png">
+												<img id="usdzIMG" src="/thumbnails/0001.png" width="100%" height=auto>
 											  </picture> 
 										</a>
 									</div>
@@ -169,7 +204,7 @@
 				<!-- Footer -->
 					<div id="footer">
 						<ul class="copyright">
-							<li>&copy; Untitled.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							<li>&copy; 3Dfine.art.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 						</ul>
 					</div>
 
@@ -181,6 +216,106 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+			<script>
+
+				var selected = '0000'
+				var title = ''
+				var row1 = ''
+				var row2 = ''
+				var row3 = ''
+				var row4 = ''
+				var footer = ''
+
+				function seleccion(item) {
+					console.log(item);
+					selected = item;
+					if (selected!='0000') {
+						document.getElementById('step1').className = "icon solid fa-check-square"
+					}
+
+					document.getElementById('usdz').href = "/experiences/"+selected+"/exp" + selected +"_m.usdz"
+					document.getElementById('usdzWEBP').srcset = "/thumbnails/" + selected +".webp"
+					document.getElementById('usdzPNG').srcset = "/thumbnails/" + selected +".png"
+					document.getElementById('usdzIMG').src = "/thumbnails/" + selected +".png"
+					document.getElementById('usdz').hidden = false
+					
+				}
+
+				function messageWriten() {
+					document.getElementById('step2').className = "icon solid fa-check-square"
+					window.location.hash = '#getAR'
+				}
+
+				async function cardchange() {
+
+					var text0 = document.getElementById("title").value;
+					var text1 = document.getElementById("line1").value;
+					var text2 = document.getElementById("line2").value;
+					var text3 = document.getElementById("line3").value;
+					var text4 = document.getElementById("line4").value;
+					var text5 = document.getElementById("bottom").value;
+
+					imagePath = "/experiences/Material_baseColor.png"
+
+					async function addTextToImage(imagePath, text0, text1="", text2="", text3="", text4="", text5="", x=257, y=367, weight="600", fontsize0="48", fontsize1="30", fontsize2="40", fontfamily="ocr-a-std", align="center") {
+						return new Promise(resolve =>{
+						var circle_canvas = document.getElementById("canvas");
+						//var circle_canvas = newCanvas
+						var context = circle_canvas.getContext("2d");
+
+
+						circle_canvas.style.width = "512px"
+						circle_canvas.style.height = "512px"
+
+						circle_canvas.width = 1024
+						circle_canvas.height = 1024
+
+						// Draw Image function
+						var img = new Image();
+						img.src = imagePath;
+						img.onload = function () {
+							context.scale(2,2)
+							context.drawImage(img, 0, 0);
+							context.lineWidth = 1;
+							context.fillStyle = "#000000";
+							context.lineStyle = "#000000";
+							context.textAlign = align
+							context.scale(1,-1)
+							context.font = weight + " normal "+ fontsize0 +"px "+ fontfamily +",sans-serif";
+							context.fillText(text0, x, -y);
+							context.font = weight + " normal "+ fontsize1 +"px "+ fontfamily +",sans-serif";
+							context.fillText(text1, x, -y+64);
+							context.font = weight + " normal "+ fontsize1 +"px "+ fontfamily +",sans-serif";
+							context.fillText(text2, x, -y+100);
+							context.font = weight + " normal "+ fontsize1 +"px "+ fontfamily +",sans-serif";
+							context.fillText(text3, x, -y+136);
+							context.font = weight + " normal "+ fontsize1 +"px "+ fontfamily +",sans-serif";
+							context.fillText(text4, x, -y+172);
+							context.font = weight + " normal "+ fontsize2 +"px "+ fontfamily +",sans-serif";
+							context.fillText(text5, x, -y+230);
+							context.restore();
+							
+							//console.log(context.font);
+							resolve()
+						};
+					})}
+
+					//console.log(text0);
+					await addTextToImage(imagePath, text0, text1=text1, text2=text2, text3=text3, text4=text4, text5=text5)
+
+					var canvas = document.getElementById("canvas");
+					var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+
+					//console.log(image);
+
+					var element = document.getElementById("imagen");
+					element.src = image
+
+
+				}
+
+			</script>
 
 	</body>
 </html>
