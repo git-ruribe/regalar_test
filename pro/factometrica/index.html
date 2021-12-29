@@ -6,6 +6,28 @@
         <!-- https://developers.google.com/ar/develop/webxr/model-viewer -->
 		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
+        <link rel="stylesheet" href="/oep8ygu.css"> 
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-5MRSZFMLLX"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-5MRSZFMLLX');
+        gtag('config', 'UA-176287415-1');
+        gtag('config', 'AW-10830928366');
+        </script>
+
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-TD3RGQW');</script>
+            <!-- End Google Tag Manager -->
+
     </head>
 
     <style>
@@ -17,39 +39,38 @@
 
     <body>
 
-        <div style="text-align: center; font-size: 4vw; padding-top: 5vh ; padding-left: 4vw; padding-right: 4vw; height: 20vh;">
-                Descubre lo que te espera en el 2022 ...
-                <br><br>
-                <small>Pista: Hay 3 palabras escondidas</small>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TD3RGQW"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <!-- End Google Tag Manager (noscript) -->
+
+        <div style="text-align: center; font-family: medusa; font-size: 4vh; padding-top: 5vh ; padding-left: 4vw; padding-right: 4vw; height: 20vh;">
+                Del lado que lo veas ... <br>Salud, Éxito, Paz y Amor <br> en este Nuevo Año.
         </div>
 
-        <model-viewer autoplay src="cubos.glb"
-            alt="A 3D model of a Cactus in a pot"
+        <model-viewer autoplay src="deseos2022.glb"
+            alt="Salus, Amor, Paz y Éxito deseos 2022 en una animación 3D"
             ar
             autoplay
             ar-modes="webxr scene-viewer quick-look" 
-            ios-src="cubos.usdz"
+            ios-src="deseos2022.usdz"
             auto-rotate
-            camera-controls>
-            <button slot="ar-button" style="background-color: rgb(230, 230, 230); border-radius: 4px; 
+            camera-controls
+            poster="deseos2022.jpg">
+            <button id="ARopen" slot="ar-button" style="background-color: rgb(230, 230, 230); border-radius: 4px; 
                 border: none; position: absolute; top: 16px; left: 16px; 
                 font-size: 4vw;">
                 👋 Activate AR
             </button>
         </model-viewer>
-        <!--ios-src="Medieval_Fantasy_Book.usdz"-->
 
-        <!--
-    <div style="text-align: center; font-size: 2vw; padding-bottom: 5vh; padding-left: 4vw; padding-right: 4vw; height: 20vh;">
-        <p>
-        This work of art contains 
-            <a href="https://skfb.ly/69Qty">"Medieval Fantasy Book"</a> 
-            by Pixel is licensed under  
-            <a href="http://creativecommons.org/licenses/by/4.0/h">Creative Commons Attribution</a>.
+       
+    <div style="text-align: center; font-size: 2vh; padding-bottom: 5vh; padding-left: 4vw; padding-right: 4vw; height: 20vh;">
+        <p> Experiencia AR creada por: 
+            <a href="https://3dfine.art">3dfine.art</a> 
         </p>
     </div>
-    "Gift Box FNL 01" (https://skfb.ly/orFXD) by Vivek.Murthy is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
-    -->
+
 
     </body>   
 
