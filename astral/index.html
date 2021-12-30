@@ -187,6 +187,7 @@
 											<div class="col-12">
 												<input type="button" value="Attach the Card to AR Experience " onclick="messageWriten()"/>
 											</div>
+											
 									</div>
 								</form>
 
@@ -211,7 +212,7 @@
 							<div id="step3" class="icon fa-square"><span>&ensp; Custom AR Experience Ready</span></div>
 
 
-							<model-viewer autoplay src="/exps/0001/gltf/exp0001.gltf"
+							<model-viewer id="modelviewer" autoplay src="/exps/0001/gltf/exp0001.gltf"
 								ios-src="/exps/0001/usdz/exp0001_m.usdz"
 								alt="Augmented Reality Experience - Butterfly in a Music Box"
 								ar
@@ -221,6 +222,13 @@
 								poster="/thumbnails/0001.jpg">
 							</model-viewer>
 
+							<div class="col-12">
+								<input type="button" value="Remake AR Experience " onclick="generaUSDZ_C()"/>
+							</div>
+
+							<br>
+
+							<button id="descargaUSDZ" disabled>Descarga USDZ</button>
 							<!-- 
 							<section>
 								<div class="row" style="padding-top: 20px;">
@@ -258,6 +266,12 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+			<script type="module">
+
+				import '/jszip/jszip.js';
+	
+			</script>
+
 			<script>
 
 				var selected = '0000'
@@ -275,17 +289,19 @@
 						document.getElementById('step1').className = "icon solid fa-check-square"
 					}
 
+					/*
 					document.getElementById('usdz').href = "/experiences/"+selected+"/exp" + selected +"_m.usdz"
 					document.getElementById('usdzWEBP').srcset = "/thumbnails/" + selected +".webp"
 					document.getElementById('usdzPNG').srcset = "/thumbnails/" + selected +".png"
 					document.getElementById('usdzIMG').src = "/thumbnails/" + selected +".png"
 					document.getElementById('usdz').hidden = false
+					*/
 					
 				}
 
 				function messageWriten() {
-					document.getElementById('step2').className = "icon solid fa-check-square"
-					window.location.hash = '#getAR'
+					document.getElementById('step2').className = "icon solid fa-check-square";
+					window.location.hash = '#getAR';
 				}
 
 				async function cardchange() {
@@ -354,6 +370,133 @@
 					element.src = image
 
 
+				}
+
+			</script>
+
+			<script>
+
+				function downloadUSDZ(data, filename, type) {
+					var file = new Blob([data], {type: type});
+					if (window.navigator.msSaveOrOpenBlob) // IE10+
+						window.navigator.msSaveOrOpenBlob(file, filename);
+					else { // Others
+						const a = document.createElement("a");
+								if (a.relList.supports("ar")) { // esto debe ir directamente al generar el modelo para el caso de dispositivos con AR ... revisar caso si quiere enviar a otro dispositivo.
+									url = URL.createObjectURL(file);
+									document.getElementById("modelviewer").setAttribute("ios-src")=url;
+								} else {
+									url = URL.createObjectURL(file);
+									a.href = url;
+									a.download = filename;
+									document.body.appendChild(a);
+									a.click();
+									setTimeout(function() {
+										document.body.removeChild(a);
+										window.URL.revokeObjectURL(url);  
+									}, 0); 
+								}
+					}
+				}
+
+				function loadBlob(filePath) {
+					return new Promise(resolve =>{
+						var result = null;
+						var xmlhttp = new XMLHttpRequest();
+						xmlhttp.open("GET", filePath, true);
+						xmlhttp.responseType = "arraybuffer";
+
+						xmlhttp.onload = function (oEvent) {
+							var arrayBuffer = xmlhttp.response;
+
+							resolve(arrayBuffer)
+						}
+						
+						xmlhttp.send(null);
+					}
+					)
+				}
+
+				async function generaUSDZ_C() {
+
+					var canvas = document.getElementById("canvas");
+
+					var tempCanvas = document.createElement("canvas"),
+					tempCtx = tempCanvas.getContext("2d");
+
+					tempCanvas.width = canvas.width;
+					tempCanvas.height = canvas.height;
+					tempCtx.translate(canvas.width/2,canvas.height/2+30);
+					tempCtx.rotate(180 * Math.PI / 180);
+					tempCtx.drawImage(canvas,-canvas.width/2,-canvas.height/2);
+					// put our data onto the temp canvas
+					//tempCtx.drawImage(canvas,0,0,canvas.width,canvas.height);
+					tempCtx.restore();
+					
+					var image = tempCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+
+					var zip2 = new JSZip();
+					zip2.file("3DfineArtFlyFree.usdc",await loadBlob("/exps/0001/usdc/exp0001_m.usdc"))
+
+					zip2.file("0/music.mp3", await loadBlob("/exps/0001/usdc/0/music.mp3"))
+
+					zip2.file("1/texgen_10.png", await loadBlob(image))
+					zip2.file("1/texgen_11.png", await loadBlob("/exps/0001/usdc/1/texgen_11.png"))
+
+					/*
+					zip2.file("1/mat1_baseColor.jpg", await loadBlob("./experiences/0001/1/mat1_baseColor.jpg"))
+					zip2.file("1/phong1_baseColor.jpg", await loadBlob("./experiences/0001/1/phong1_baseColor.jpg"))
+					zip2.file("1/phong1_metallicRoughness_metal.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_metal.jpg"))
+					zip2.file("1/phong1_metallicRoughness_rough_scale0.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough_scale0.jpg"))
+					zip2.file("1/phong1_metallicRoughness_rough_scale1.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough_scale1.jpg"))
+					zip2.file("1/phong1_metallicRoughness_rough_scale2.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough_scale2.jpg"))
+					zip2.file("1/phong1_metallicRoughness_rough.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough.jpg"))
+					*/
+
+					zip2.generateAsync({type:"blob"})
+						.then(function (blob) {
+
+							// Reportar Conversión
+							//gtag_report_conversion()
+
+							const a = document.createElement("a");
+								if (a.relList.supports("ar")) {
+								// AR is available.
+
+								/*
+									console.log("AR disponible");
+
+									var file = new Blob([blob], {type:"model/vnd.usdz+zip"});
+									var url = URL.createObjectURL(file);
+
+									var elementAR = document.getElementById("usdzPlacer");
+									elementAR.rel = "ar"
+									elementAR.href = url
+
+									document.getElementById("blob").innerHTML = "Remake 3D Model";
+									document.getElementById("blob").style.color = "black";
+									document.getElementById("blob").disabled = false;
+									document.getElementById("tarjeta").disabled = false;
+
+									document.getElementById("descarga").onclick = function(event) {
+										downloadX(blob, "regalAR.usdz", "model/vnd.usdz+zip");
+									}
+									*/
+									document.getElementById("descarga").disabled = false;
+									document.getElementById("descarga").innerHTML = "Listo";
+
+								} else {
+									console.log("AR NO disponible");
+
+									document.getElementById("descargaUSDZ").onclick = function(event) {
+										downloadUSDZ(blob, "3DfineArtFlyFree.usdz", "model/vnd.usdz+zip");
+									}
+
+									document.getElementById("descargaUSDZ").disabled = false;
+									
+								}
+							console.log("OK");
+						});
 				}
 
 			</script>
