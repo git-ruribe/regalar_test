@@ -235,7 +235,7 @@
 								camera-controls
 								poster="/thumbnails/0001.jpg">
 
-								<div id="annotation">Customizing in progress ...</div>
+								<div id="annotation">Customizing not started.</div>
 
 							</model-viewer>
 
@@ -439,6 +439,8 @@
 
 				async function generaUSDZ_C() {
 
+					document.getElementById("annotation").innerHTML="Customization In Progress ...";
+
 					var canvas = document.getElementById("canvas");
 
 					var tempCanvas = document.createElement("canvas"),
@@ -502,8 +504,12 @@
 										downloadX(blob, "regalAR.usdz", "model/vnd.usdz+zip");
 									}
 									*/
-									document.getElementById("descarga").disabled = false;
-									document.getElementById("descarga").innerHTML = "Listo";
+									document.getElementById("descargaUSDZ").onclick = function(event) {
+										downloadUSDZ(blob, "3DfineArtFlyFree.usdz", "model/vnd.usdz+zip");
+									}
+
+									document.getElementById("descargaUSDZ").disabled = false;
+									document.getElementById("descargaUSDZ").innerHTML = "Listo";
 
 								} else {
 									console.log("AR NO disponible");
