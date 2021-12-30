@@ -401,8 +401,8 @@
 						const a = document.createElement("a");
 								if (a.relList.supports("ar")) { // esto debe ir directamente al generar el modelo para el caso de dispositivos con AR ... revisar caso si quiere enviar a otro dispositivo.
 									url = URL.createObjectURL(file);
-									document.getElementById("modelviewer").setAttribute("ios-src")=url;
-									document.getElementById("annotation").innerHTML="Customization Ready, Model Ready to Preview in AR"
+									document.getElementById("modelviewer").setAttribute("ios-src", url);
+									document.getElementById("annotation").innerHTML="Customization Ready, Model Ready to Preview in AR";
 								} else {
 									url = URL.createObjectURL(file);
 									a.href = url;
@@ -414,7 +414,7 @@
 										window.URL.revokeObjectURL(url);  
 									}, 0); 
 									document.getElementById("modelviewer").setAttribute("ios-src", url);
-									document.getElementById("annotation").innerHTML="Customization Ready, Model Downloaded."
+									document.getElementById("annotation").innerHTML="Customization Ready, Model Downloaded.";
 								}
 					}
 				}
@@ -516,6 +516,7 @@
 									
 								}
 							console.log("OK");
+							document.getElementById("annotation").innerHTML="Customization Ready";
 						});
 				}
 
