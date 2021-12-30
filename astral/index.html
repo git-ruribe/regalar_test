@@ -16,6 +16,14 @@
 		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
 	</head>
+
+	<style>
+        model-viewer {
+          width: 90%;
+          height: 50vh;
+        }
+    </style>
+
 	<body class="is-preload">
 
 		<!-- Wrapper-->
@@ -60,12 +68,13 @@
 											<a id="t0001" href="#card" class="image fit" onclick="seleccion('0001')">
 												<picture>
 													<source type="image/webp" srcset="/thumbnails/0001.webp">
-													<source type="image/png" srcset="/thumbnails/0001.png">
-													<img alt="A thumnail of an Augmented Reality Experience showing a Butterfly escapig from a Music Box." src="/thumbnails/0001.png" width="100%" height=auto>
+													<source type="image/png" srcset="/thumbnails/0001.jpg">
+													<img alt="A thumnail of an Augmented Reality Experience showing a Butterfly escapig from a Music Box." src="/thumbnails/0001.jpg" width="100%" height=auto>
 												  </picture>                 
 											</a>
 											<strong>Fly Free</strong> <small>by RU72</small>
 										</div>
+										<!--
 										<div class="col-4 col-6-medium col-12-small">
 											<a id="t0002" href="#card" class="image fit" onclick="seleccion('0002')">
 												<picture>
@@ -96,36 +105,49 @@
 											</a>
 											<strong>The Visitant</strong> <small>by RU72</small>
 										</div>
+										-->
 										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic05.jpg" alt=""></a>
+											<a href="#work" class="image fit"><img src="images/pic02.jpg" alt=""></a>
 											<strong>Coming Soon</strong> <small></small>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic06.jpg" alt=""></a>
+											<a href="#work" class="image fit"><img src="images/pic03.jpg" alt=""></a>
 											<strong>Coming Soon</strong> <small></small>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic07.jpg" alt=""></a>
+											<a href="#work" class="image fit"><img src="images/pic04.jpg" alt=""></a>
 											<strong>Coming Soon</strong> <small></small>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic08.jpg" alt=""></a>
+											<a href="#work" class="image fit"><img src="images/pic05.jpg" alt=""></a>
 											<strong>Coming Soon</strong> <small></small>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic09.jpg" alt=""></a>
+											<a href="" class="image fit"><img src="images/pic06.jpg" alt=""></a>
 											<strong>Coming Soon</strong> <small></small>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic10.jpg" alt=""></a>
+											<a href="#work" class="image fit"><img src="images/pic07.jpg" alt=""></a>
 											<strong>Coming Soon</strong> <small></small>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic11.jpg" alt=""></a>
+											<a href="#work" class="image fit"><img src="images/pic08.jpg" alt=""></a>
 											<strong>Coming Soon</strong> <small></small>
 										</div>
 										<div class="col-4 col-6-medium col-12-small">
-											<a href="#" class="image fit"><img src="images/pic12.jpg" alt=""></a>
+											<a href="#work" class="image fit"><img src="images/pic09.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#work" class="image fit"><img src="images/pic10.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#work" class="image fit"><img src="images/pic11.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#work" class="image fit"><img src="images/pic12.jpg" alt=""></a>
 											<strong>Coming Soon</strong> <small></small>
 										</div>
 									</div>
@@ -189,14 +211,17 @@
 							<div id="step3" class="icon fa-square"><span>&ensp; Custom AR Experience Ready</span></div>
 
 
-							<model-viewer autoplay src="gltf/scene.gltf"
-								ios-src="/experiences/0001/exp0001_m.usdz"
-								alt="A 3D model of an astronaut"
+							<model-viewer autoplay src="/exps/0001/gltf/exp0001.gltf"
+								ios-src="/exps/0001/usdc/exp0001_m.usdc"
+								alt="Augmented Reality Experience - Butterfly in a Music Box"
 								ar
-								auto-rotate
-								camera-controls>
+								autoplay
+								ar-modes="webxr scene-viewer quick-look" 
+								camera-controls
+								poster="/thumbnails/0001.jpg">
 							</model-viewer>
 
+							<!-- 
 							<section>
 								<div class="row" style="padding-top: 20px;">
 									<div class="col-12 col-12-medium col-12-small">
@@ -210,9 +235,12 @@
 									</div>
 								</div>
 							</section>	
+							-->
+
 						</article>
 
 					</div>
+					
 
 				<!-- Footer -->
 					<div id="footer">
