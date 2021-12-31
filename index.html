@@ -241,18 +241,18 @@
 
 							</model-viewer>
 
-                            <div id="descargaUSDZ" hidden>
+                            <div id="downloads" hidden>
 							<div class="row">
                                 <div class="col-12">
 								    Your AR Experience is for you to keep.
                                 </div>
                                 <div class="col-12">
-                                    To view in our online viewer.
-								    <input style="width: 80vw;" type="button" value="Download GLB file."/>
+                                    To view in our online viewer.<br>
+								    <a id="dwnldGLB" style="width: 80vw;">Download GLB file.</a>
                                 </div>
 								<div class="col-12">
                                     To view in iPhone or iPad.
-                                    <input style="width: 80vw;" type="button" value="Download USDZ file (to view on iPhone)"/>
+                                    <input id="descargaUSDZ" style="width: 80vw;" type="button" value="Download USDZ file (to view on iPhone)"/>
                                 </div>
 							</div>
                             </div>
@@ -352,12 +352,12 @@
 
 				function save( blob, filename ) {
 
-                const link = document.createElement( 'a' );
-			    link.style.display = 'none';
+                const link = document.getElementById("dwnldGLB");
+			    //link.style.display = 'none';
 
 				link.href = URL.createObjectURL( blob );
 				link.download = filename;
-				link.click();
+				//link.click();
 
 				// URL.revokeObjectURL( url ); breaks Firefox...
 
@@ -673,7 +673,7 @@
 										downloadUSDZ(blob, "3DfineArtFlyFree.usdz", "model/vnd.usdz+zip");
 									}
 
-									document.getElementById("descargaUSDZ").hidden = false;
+									document.getElementById("downloads").hidden = false;
 									//document.getElementById("descargaUSDZ").innerHTML = "Listo";
 
 								} else {
@@ -683,7 +683,7 @@
 										downloadUSDZ(blob, "3DfineArtFlyFree.usdz", "model/vnd.usdz+zip");
 									}
 
-									document.getElementById("descargaUSDZ").hidden = false;
+									document.getElementById("downloads").hidden = false;
 									
 								}
 							console.log("OK");
