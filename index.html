@@ -1,372 +1,708 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
+<!DOCTYPE HTML>
+<!--
+	Astral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
 		<title>3D Fine Art - Augmented Reality Virtual Gifts</title>
-        
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/astral/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/astral/assets/css/noscript.css" /></noscript>
 
-        <meta name="description" content="Amaze your loved one with a personalized virtual AR Experience Multimedia Gift. Customize a greeting card included in the 3D AR model to make your own unique virtual gift.">
+		<!-- https://developers.google.com/ar/develop/webxr/model-viewer -->
+		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
-        <!-- You can use Open Graph tags to customize link previews.
-        Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
-        <meta property="og:url"           content="https://3dfine.art" />
-        <meta property="og:type"          content="website" />
-        <meta property="og:title"         content="3D Fine Art - Augmented Reality Virtual Gifts" />
-        <meta property="og:description"   content="Amaze your loved one with a personalized virtual AR Experience Multimedia Gift. Customize a greeting card included in the 3D AR model to make your own unique virtual gift." />
-        <meta property="og:image"         content="https://3dfine.art/thumbnails/0001.png" />
+	</head>
 
-        <!-- https://favicon.io/favicon-generator/ -->
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
-
-        <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> solo para imagen responsiva -->
-
-        <!--<link rel="stylesheet" href="https://use.typekit.net/oep8ygu.css"> -->
-
-        <link rel="stylesheet" href="/w3.css"> 
-        <link rel="stylesheet" href="/oep8ygu.css"> 
-
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-5MRSZFMLLX"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-5MRSZFMLLX');
-        gtag('config', 'UA-176287415-1');
-        gtag('config', 'AW-10830928366');
-        </script>
-
-
-
-    </head>
-
-    <style>
-
-        *, *:before, *:after {
-            box-sizing: inherit;
-        }
-        
-        .row {
-          display: -ms-flexbox; /* IE10 */
-          display: flex;
-          -ms-flex-wrap: wrap; /* IE10 */
-          flex-wrap: wrap;
-          font-size: calc((1.8 - 1) * 1.2vh + 1rem);
-          max-width: 1000px;
-          box-sizing: inherit;
-        }
-        
-        /* Create four equal columns that sits next to each other */
-        .column {
-          -ms-flex: 50%; /* IE10 */
-          flex: 50%;
-          max-width: 50%;
-          padding-right: 6vw;
-        }
-        
-        .column img {
-          margin-top: 8px;
-          margin-bottom: 15px;
-          vertical-align: middle;
-          width: 100%;
+	<style>
+        model-viewer {
+          width: 90%;
+          height: 50vh;
         }
 
-        .item {
-          padding-bottom: 6vw;
-        }
-        
-        /* Responsive layout - makes a two column-layout instead of four columns */
-        @media screen and (max-width: 800px) {
-          .column {
-            -ms-flex: 50%;
-            flex: 50%;
-            max-width: 50%;
-          }
-        }
-        
-        /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-        @media screen and (max-width: 600px) {
-          .column {
-            -ms-flex: 100%;
-            flex: 100%;
-            max-width: 100%;
-          }
-        }
+		#annotation{
+			background-color: #888888;
+			color: white;
+			position: absolute;
+			transform: translate(10px, 10px);
+			border-radius: 10px;
+			padding: 10px;
+			font-size: 3vw;
+		}
+		/* This keeps child nodes hidden while the element loads */
+		:not(:defined) > * {
+			display: none;
+		}
 
-        h1 {
-          font-family: orpheuspro,serif;
-          font-weight: 400;
-          font-style: normal;
-          
-          font-size: calc((1.8 - 1) * 1.2vh + 1rem);
-        }
+    </style>
 
-        h2 {
-          font-family: orpheuspro,serif;
-          font-weight: 400;
-          font-style: normal;
-          
-          font-size: calc((1.8 - 1) * 1.2vh + 1rem);
-        }
+	<body class="is-preload">
 
-        h3 {
-          font-family: orpheuspro,serif;
-          font-weight: 400;
-          font-style: normal;
-          
-          font-size: calc((1.4 - 1) * 1.2vh + 1rem);
-        }
+		<!-- Wrapper-->
+			<div id="wrapper" style="min-height: 0px;">
 
-        .texto {
-          font-family: orpheuspro,serif;
-          font-weight: 400;
-          font-style: normal;
-          padding-left: 6vw;
-          font-size: calc((1.2 - 1) * 1.2vh + 1rem);
-          margin-top: 2rem;
-          margin-right: 0px;
-          margin-bottom: 0rem;
-          margin-left: 0px;
-          max-width: 1000px;
-          height: auto;
-          padding-left: 6vw;
-          padding-bottom: 6vw;
-        }
+				<!-- Nav -->
+					<nav id="nav">
+						<a href="#home" class="icon solid fa-home"><span>Home</span></a>
+						<a href="#work" class="icon solid fa-hand-pointer"><span>Select</span></a>
+						<a href="#card" class="icon solid fa-edit"><span>Customize</span></a>
+						<a href="#getAR" class="icon solid fa-file-export"><span>Get</span></a>
+                        <a href="#viewer" class="icon solid fa-eye"><span>View</span></a>
+					</nav>
 
-        .tab2 {
-            tab-size: 4;
-        }
+				<!-- Main -->
+					<div id="main">
 
-        </style>
+						<!-- Me -->
+							<article id="home" class="panel intro">
+								
+								<header>
+									<h1>3D Fine Art</h1>
+									<p>Give AR Experiences, Not Things</p>
+								</header>
+								<a href="#work" class="jumplink pic">
+									<span class="arrow icon solid fa-chevron-right"><span>Select an experience</span></span>
+									<img src="/astral/images/girl.jpg" alt="" />
+								</a>
+							
+							</article>
 
-    <body style="
-        display: block;
-        margin-top: 0px;
-        margin-right: 0px;
-        margin-bottom: 0px;
-        margin-left: 0px;
-        overflow-wrap: break-word;">
+						<!-- Work -->
+							<article id="work" class="panel">
+								<header>
+									<h2>Select an AR Experience</h2>
+								</header>
+								<p>
+									Choose one of our Interactive Multimedia Augmented Reality Experiences.
+								</p>
+								<section>
+									<div class="row">
+										<div class="col-4 col-6-medium col-12-small">
+											<a id="t0001" href="#card" class="image fit" onclick="seleccion('0001')">
+												<picture>
+													<source type="image/webp" srcset="/thumbnails/0001.webp">
+													<source type="image/png" srcset="/thumbnails/0001.jpg">
+													<img alt="A thumnail of an Augmented Reality Experience showing a Butterfly escapig from a Music Box." src="/thumbnails/0001.jpg" width="100%" height=auto>
+												  </picture>                 
+											</a>
+											<strong>Fly Free</strong> <small>by RU72</small>
+										</div>
+										<!--
+										<div class="col-4 col-6-medium col-12-small">
+											<a id="t0002" href="#card" class="image fit" onclick="seleccion('0002')">
+												<picture>
+													<source type="image/webp" srcset="/thumbnails/0002.webp">
+													<source type="image/png" srcset="/thumbnails/0002.png">
+													<img alt="A thumnail of an Augmented Reality Experience showing a red heart floating inside a steampunk gyroscope." src="/thumbnails/0002.png" width="100%" height=auto>
+												  </picture>  
+											</a>
+											<strong>Take Care</strong> <small>by RU72</small>
+										</div>   
+										<div class="col-4 col-6-medium col-12-small">
+											<a id="t0003" href="#card" class="image fit" onclick="seleccion('0003')">
+												<picture>
+													<source type="image/webp" srcset="/thumbnails/0003.webp">
+													<source type="image/png" srcset="/thumbnails/0003.png">
+													<img alt="A thumnail of an Augmented Reality Experience showing a large safebox door in an abandoned warehouse." src="/thumbnails/0003.png" width="100%" height=auto>
+												  </picture>  
+											</a>
+											<strong>Call Me</strong> <small>by RU72</small>
+										</div>
+										<div class="col-4 col-6-medium col-12-small" onclick="seleccion('0004')">
+											<a id="t0004" href="#card" class="image fit">
+												<picture>
+													<source type="image/webp" srcset="/thumbnails/0004.webp">
+													<source type="image/png" srcset="/thumbnails/0004.png">
+													<img alt="A thumnail of an Augmented Reality Experience showing a hummingbird visiting a cactus flower in a terracota pot." src="/thumbnails/0004.png" width="100%" height=auto>
+												  </picture>  
+											</a>
+											<strong>The Visitant</strong> <small>by RU72</small>
+										</div>
+										-->
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#work" class="image fit"><img src="/astral/images/pic02.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#work" class="image fit"><img src="/astral/images/pic03.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#work" class="image fit"><img src="/astral/images/pic04.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#work" class="image fit"><img src="/astral/images/pic05.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="" class="image fit"><img src="/astral/images/pic06.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#work" class="image fit"><img src="/astral/images/pic07.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#work" class="image fit"><img src="/astral/images/pic08.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#work" class="image fit"><img src="/astral/images/pic09.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#work" class="image fit"><img src="/astral/images/pic10.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#work" class="image fit"><img src="/astral/images/pic11.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
+										</div>
+										<div class="col-4 col-6-medium col-12-small">
+											<a href="#work" class="image fit"><img src="/astral/images/pic12.jpg" alt=""></a>
+											<strong>Coming Soon</strong> <small></small>
+										</div>
+									</div>
+								</section>
+							</article>
 
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0" nonce="7GE0z3Zo"></script>
+						<!-- Contact -->
+							<article id="card" class="panel">
+								<header>
+									<h2>Write a Gift Card Message</h2>
+								</header>
+								<p>
+									The card will be included in your customized Augmented Reality Experience.
+								</p>
+								<form action="#getAR">
+									<div>
+										<div class="row">
+											<div class="col-12">
+												<input type="text" id="title" name="title" placeholder="Title (15 chars)" maxlength="15" onchange="cardchange()"/>
+											</div>
 
-        <!-- Navbar (sit on top) -->
-        <div style="
-            padding: 6vw;
-            font-size: calc(1rem);
-            font-family: orpheuspro,serif;
-            font-weight: 400;
-            font-style: normal;
-            letter-spacing: 0em;
-            text-transform: none;
-            line-height: 1.4em;
-            ">
-            <div>
-              <div class="column">
-            <div >
-            <a  href="#home"  style="
-            text-decoration: none;
-            font-size: calc((2 - 1) * 1.2vh + 1rem);"><strong>3D fine art</strong></a>
-            </div>
-          </div>
-          <div class="column"></div>
-            <!-- Float links to the right. Hide them on small screens -->
-            <div style="padding-top: 20px;"><div style="font-size: calc((1.2 - 1) * 1.2vw + 1rem);">
-              <a href="#FAQ">FAQ</a> &emsp; <a href="#Contribute">Contribute</a> &emsp; <a href="#About">About</a> 
-            </div>
-          </div>
-            </div>
-        </div>
+											<div class="col-12" >
+												<input type="text" id="line1" name="line1" placeholder="Card Row 1 (23 chars)" maxlength="23" onchange="cardchange()"/>
+											</div>
+											<div class="col-12" style="padding-top: 3px;">
+												<input type="text" id="line2" name="line2" placeholder="Card Row 2 (23 chars)" maxlength="23" onchange="cardchange()"/>
+											</div>
+											<div class="col-12" style="padding-top: 3px;">
+												<input type="text" id="line3" name="line3" placeholder="Card Row 3 (23 chars)" maxlength="23" onchange="cardchange()"/>
+											</div>
+											<div class="col-12" style="padding-top: 3px;">
+												<input type="text" id="line4" name="line4" placeholder="Card Row 4 (23 chars)" maxlength="23" onchange="cardchange()"/>
+											</div>
+											<div class="col-12">
+												<input type="text" id="bottom" name="bottom" placeholder="Footer (17 chars)" maxlength="15" onchange="cardchange()"/>
+											</div>
+											<div class="col-12">
+												<input id="writeCard" type="button" value="Attach the Card to AR Experience " onclick="messageWriten()"/>
+											</div>
+											
+									</div>
+								</form>
 
-    		<div id="info" style="
-        padding-top: 3.3vw;
-        padding-bottom: 3.3vw;
-        padding-left: 6vw;
-        padding-right: 6vw;
-        font-family: orpheuspro,serif;
-        line-height: 1.2992;
-        font-weight: 400;
-        font-style: normal;
-        letter-spacing: 0em;
-        text-transform: none;
-        -webkit-font-smoothing: antialiased;
-        -webkit-text-size-adjust: 100%;
-        ">
+								<div class="row" style="padding-top: 40px;">
+									<img id="imagen" class="col-6 col-12-medium col-12-small" src="/experiences/Material_baseColor.png" height="auto" style="-webkit-transform: scaleY(-1);
+									transform: scaleY(-1);">
+							
+									<canvas hidden id="canvas" width="512" height="512"></canvas>
+								</div>
 
-    <div id="Intro">
-      <h1>
-        The AR Experiences Gift Shop
-      </h1>
-      <h3>
-        <i>"Give AR Experiences, Not Stuff"</i>
-      </h3>
-      <div style="
-      font-size: calc((1.2 - 1) * 1.2vh + 1rem);
-      margin-top: 2rem;
-      margin-right: 0px;
-      margin-bottom: 0rem;
-      margin-left: 0px;
-      max-width: 1000px;
-      height: auto;
-      padding-right: 6vw;">
-        <p>
-          Welcome to 3D Fine Art, the first <strong>Customizable AR Experiences</strong> Gift Shop. Combining great 3D models, clever animations, sound and music you will amaze the recipient of your virtual gift.
-        </p>
-        <p>
-          Our AR experiences take advantage of <strong>Apple's AR Quick Look</strong> to let users see and hear <strong>incredibly detailed object renderings</strong> in a real-world surrounding. An iPhone or iPad with iOS12 or newer is required for viewing. You can create the experience in almost any web browser.
-        </p>
-        <p>
-          We try to make this site as simple as possible to use, but we know that for many of our visitors this is the first time using Augmented Reality so please visit the FAQ section in case you have any doubts.
-        </p>
-        <br><br>
-    </div>
-    </div>    
+							</article>
+						
+						
+						<!-- Contact -->
+						<article id="getAR" class="panel">
+							<header>
+								<h2>Preview & Download</h2>
+							</header>
+
+							<div id="step1" class="icon fa-square"><span>&ensp; Select an AR Experience</span></div>
+							<div id="step2" class="icon fa-square"><span>&ensp; Write Card Message</span></div>
+							<div id="step3" class="icon fa-square"><span>&ensp; Custom AR Experience Ready</span></div>
 
 
+							<model-viewer id="modelviewer" autoplay src="/exps/0001/glb/exp0001.glb"
+								ios-src="/exps/0001/usdz/exp0001_m.usdz"
+								alt="Augmented Reality Experience - Butterfly in a Music Box"
+								ar
+								autoplay
+								ar-modes="webxr scene-viewer quick-look" 
+								camera-controls
+								poster="/thumbnails/0001.jpg">
 
-      <h2 style="padding-left: 0px; padding-bottom: 40px;">AR Experiences</h2>
+								<div id="annotation">Generic AR Experience</div>
 
-        <!-- https://cloudconvert.com/png-to-webp -->
-        <div class="row">
-            <div class="column">
-                <div class ="item">
-                    <a id="usdz" href="/0001.html">
-                        <picture>
-                            <source type="image/webp" srcset="/thumbnails/0001.webp">
-                            <source type="image/png" srcset="/thumbnails/0001.png">
-                            <img alt="A thumnail of an Augmented Reality Experience showing a Butterfly escapig from a Music Box." src="/thumbnails/0001.png" width="100%" height=auto>
-                          </picture>                 
-                    </a>
-                    <strong>Fly Free</strong> <small>by RU72</small>
-                </div>
-                <div class ="item">
-                    <a id="usdz" href="/0002.html">
-                        <picture>
-                            <source type="image/webp" srcset="/thumbnails/0002.webp">
-                            <source type="image/png" srcset="/thumbnails/0002.png">
-                            <img alt="A thumnail of an Augmented Reality Experience showing a red heart floating inside a steampunk gyroscope." src="/thumbnails/0002.png" width="100%" height=auto>
-                          </picture>  
-                    </a>
-                    <strong>Take Care</strong> <small>by RU72</small>
-                </div>        
-            </div>
-            <div class="column">
-                <div class ="item">
-                    <a id="usdz" href="/0003.html">
-                        <picture>
-                            <source type="image/webp" srcset="/thumbnails/0003.webp">
-                            <source type="image/png" srcset="/thumbnails/0003.png">
-                            <img alt="A thumnail of an Augmented Reality Experience showing a large safebox door in an abandoned warehouse." src="/thumbnails/0003.png" width="100%" height=auto>
-                          </picture>  
-                    </a>
-                    <strong>Call Me</strong> <small>by RU72</small>
-                </div>
-                <div class ="item">
-                    <a id="usdz" href="/0004.html">
-                        <picture>
-                            <source type="image/webp" srcset="/thumbnails/0004.webp">
-                            <source type="image/png" srcset="/thumbnails/0004.png">
-                            <img alt="A thumnail of an Augmented Reality Experience showing a hummingbird visiting a cactus flower in a terracota pot." src="/thumbnails/0004.png" width="100%" height=auto>
-                          </picture>  
-                    </a>
-                    <strong>The Visitant</strong> <small>by RU72</small>
-                </div> 
+							</model-viewer>
+
+                            <div id="descargaUSDZ" hidden>
+							<div class="row">
+                                <div class="col-12">
+								    Your AR Experience is for you to keep.
+                                </div>
+                                <div class="col-12">
+                                    To view in our online viewer.
+								    <input style="width: 80vw;" type="button" value="Download GLB file."/>
+                                </div>
+								<div class="col-12">
+                                    To view in iPhone or iPad.
+                                    <input style="width: 80vw;" type="button" value="Download USDZ file (to view on iPhone)"/>
+                                </div>
+							</div>
+                            </div>
+
+							<!-- 
+							<section>
+								<div class="row" style="padding-top: 20px;">
+									<div class="col-12 col-12-medium col-12-small">
+										<a hidden id="usdz" rel="ar" href="/experiences/0001/exp0001_m.usdz">
+											<picture>
+												<source id="usdzWEBP" type="image/webp" srcset="/thumbnails/0001.webp">
+												<source  id="usdzPNG"type="image/png" srcset="/thumbnails/0001.png">
+												<img id="usdzIMG" src="/thumbnails/0001.png" width="100%" height=auto>
+											  </picture> 
+										</a>
+									</div>
+								</div>
+							</section>	
+							-->
+
+						</article>
+
+                        <article id="viewer" class="panel">
+							<header>
+								<h2>View your AR Experience</h2>
+                                <h3>(only GLB files)</h3>
+							</header>
+                            <div class="row">
+                                <div class="col-12">
+                                    <input type="file" id="fileInput" onchange="fileUploaded()"/>
+                                </div>
+                            </div>
+
+                            <model-viewer id="modelviewer2" autoplay src=""
+                            ar
+                            autoplay
+                            ar-modes="webxr scene-viewer quick-look" 
+                            camera-controls>
+                            </model-viewer>
+
+                        </article>
+
+					</div>
+					
+
+				<!-- Footer -->
+					<div id="footer">
+						<ul class="copyright">
+							<li>&copy; 3Dfine.art.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="/astral/assets/js/jquery.min.js"></script>
+			<script src="/astral/assets/js/browser.min.js"></script>
+			<script src="/astral/assets/js/breakpoints.min.js"></script>
+			<script src="/astral/assets/js/util.js"></script>
+			<script src="/astral/assets/js/main.js"></script>
+
+            <script>
+                function fileUploaded() {
+                const fileInput = document.getElementById('fileInput');
+
+                const selectedFile = fileInput.files[0];
+                console.log(selectedFile);
+                if (selectedFile.type == "model/gltf+json" || selectedFile.type == "model/gltf-binary") {
+                    console.log('Archivo correcto');
+                    var reader = new FileReader();
+                    reader.readAsDataURL(selectedFile)
+                    reader.onload = function (evt) {
+
+                        console.log(evt.target.result);
+                        document.getElementById("modelviewer2").setAttribute("src", evt.target.result);
+                    }
+                    reader.onerror = function (evt) {
+                        document.getElementById("fileContents").innerHTML = "error reading file";
+                    }
+                    
+                } else {
+                    console.log('Archivo NO adecuado');
+                }
+
+                }
                 
-            </div>
-            
+            </script>
+
+			<script type="module">
+
+				import '/jszip/jszip.js';
+
+				import {Scene} from '/build/three.module.js';
+
+				import { GLTFLoader } from '/jsm/loaders/GLTFLoader.js';
+				import { GLTFExporter } from '/jsm/exporters/GLTFExporter.js';
+
+				function save( blob, filename ) {
+
+                const link = document.createElement( 'a' );
+			    link.style.display = 'none';
+
+				link.href = URL.createObjectURL( blob );
+				link.download = filename;
+				link.click();
+
+				// URL.revokeObjectURL( url ); breaks Firefox...
+
+				//https://www.creators3d.com/online-viewer sirve para "debuggear"
+
+				document.getElementById("modelviewer").setAttribute("src",  URL.createObjectURL( blob ));
+				document.getElementById("annotation").innerHTML = "Working on it ...";
+
+				}
+
+				function saveString( text, filename ) {
+
+					save( new Blob( [ text ], { type: 'model/gltf+json' } ), filename );
+
+				}
+
+				function saveArrayBuffer( buffer, filename ) {
+
+					save( new Blob( [ buffer ], { type: 'model/gltf-binary' } ), filename );
+
+				}
+
+				function exportGLTF( input, animations ) {
+
+					const gltfExporter = new GLTFExporter();
+
+					console.log(animations)
+
+					const options = {
+						trs: false,
+						onlyVisible: true,
+						truncateDrawRange: true,
+						binary: true,
+						maxTextureSize: Infinity, // To prevent NaN value,
+						animations: animations
+					};
+					gltfExporter.parse(
+						input,
+						function ( result ) {
+
+							if ( result instanceof ArrayBuffer ) {
+
+								saveArrayBuffer( result, 'scene.glb' );
+
+							} else {
+
+								const output = JSON.stringify( result, null, 2 );
+								console.log( output );
+								saveString( output, 'scene.gltf' );
+
+							}
+
+						},
+						function ( error ) {
+
+							console.log( 'An error happened during parsing', error );
+
+						},
+						options
+					);
+
+				}
+
+				// para que la función pueda ser accesible afuera del módulo se pone window
+				window.generateGLB = function(glbFile, imagen) { 
+					const scene = new Scene();
+					
+					const loader = new GLTFLoader();
+
+					loader.load( glbFile, function ( gltf ) {
+
+						const model = gltf.scene;
+
+						scene.add( model );
+
+						var img = new Image();
+							img.src = imagen;
+							img.onload = function () {
+							scene.children[0].children[3].children[0].material.map.image=img;
+							scene.children[0].children[3].children[0].material.map.needsUpdate=true;
+
+							exportGLTF(scene, gltf.animations);
+								}
+						}, undefined, function ( e ) {
+						console.error( e );
+					} );
+				}
+
+	
+			</script>
+
+			<script>
+
+				//x = createScene(); esto va dar error porque no se carga rápido el módulo arriba
+
+				var selected = '0000'
+				var title = ''
+				var row1 = ''
+				var row2 = ''
+				var row3 = ''
+				var row4 = ''
+				var footer = ''
+
+				function seleccion(item) {
+					console.log(item);
+					selected = item;
+					if (selected!='0000') {
+						document.getElementById('step1').className = "icon solid fa-check-square"
+					}
+
+					/*
+					document.getElementById('usdz').href = "/experiences/"+selected+"/exp" + selected +"_m.usdz"
+					document.getElementById('usdzWEBP').srcset = "/thumbnails/" + selected +".webp"
+					document.getElementById('usdzPNG').srcset = "/thumbnails/" + selected +".png"
+					document.getElementById('usdzIMG').src = "/thumbnails/" + selected +".png"
+					document.getElementById('usdz').hidden = false
+					*/
+					
+				}
+
+				async function messageWriten() {
+					document.getElementById('step2').className = "icon solid fa-check-square";
+					window.location.hash = '#getAR';
+					await cardchange();
+					generaUSDZ_C();
+				}
+
+				async function cardchange() {
+
+					var text0 = document.getElementById("title").value;
+					var text1 = document.getElementById("line1").value;
+					var text2 = document.getElementById("line2").value;
+					var text3 = document.getElementById("line3").value;
+					var text4 = document.getElementById("line4").value;
+					var text5 = document.getElementById("bottom").value;
+
+					imagePath = "/experiences/Material_baseColor.png"
+
+					async function addTextToImage(imagePath, text0, text1="", text2="", text3="", text4="", text5="", x=257, y=367, weight="600", fontsize0="48", fontsize1="30", fontsize2="40", fontfamily="ocr-a-std", align="center") {
+						return new Promise(resolve =>{
+						var circle_canvas = document.getElementById("canvas");
+						//var circle_canvas = newCanvas
+						var context = circle_canvas.getContext("2d");
 
 
-            <div id="FAQ" >
-              <h2 style="padding-left: 0px;">FAQ</h2>
-              <div style="
-                    font-size: calc((1.2 - 1) * 1.2vh + 1rem);
-                    margin-top: 2rem;
-                    margin-right: 0px;
-                    margin-bottom: 0rem;
-                    margin-left: 0px;
-                    max-width: 1000px;
-                    height: auto;
-                    padding-right: 6vw;">
-              <p>
-                <strong>What is an Augmented Reality Experience?</strong>
-              </p>
-              <p>
-                An Augmented Reality (AR) involves displaying virtual content, usually a 3D model, in the real world through your phone display and camera. We introduce the "Experience" component providing interactions and animations that let the user "play" with the AR content.
-              <br><br>
-              </p>
-              <p>
-                <strong>Do I need an iPhone to create and visualize AR Experiences?</strong>
-              </p>
-              <p>
-                You need an iPhone with ios 12 or newer to visualize the experiences. You can customize the experiences and send to another device from almost any web browser.
-              <br><br>
-              </p>
-            <p>
-              <strong>How can I customize the AR Experiences in 3Dfine.art?</strong>
-            </p>
-            <p>
-              You can customize the gift card in each experience creating your own unique file to keep or share as a gift.
-            <br><br>
-            </p>
-            <p>
-              <strong>How can send my own custom AR Experience to other user?</strong>
-            </p>
-            <p>
-              First you need to Download your experience to your device, then you can share the downloaded file by email, Air-drop, Message, Whats App and many other apps as an attachment. If you're using an iPhone or iPad, please refer to <a href="https://support.apple.com/en-us/HT206481">Files Documentation</a> on Apple website.
-            <br><br>
-            </p>
-              </div>
-            </div>
+						circle_canvas.style.width = "512px"
+						circle_canvas.style.height = "512px"
 
-            <div id="Contribute" >
-              <h2 style="padding-left: 0px;">Contribute</h2>
-              <div style="
-                    font-size: calc((1.2 - 1) * 1.2vh + 1rem);
-                    margin-top: 2rem;
-                    margin-right: 0px;
-                    margin-bottom: 0rem;
-                    margin-left: 0px;
-                    max-width: 1000px;
-                    height: auto;
-                    padding-right: 6vw;">
-              <p>
-                If you want to share your AR Experiences through our site please contact <a href="mailto:3dfineart@esd.mx">3dfineart</a>
-              </p>
-              </div>
-              </div>
+						circle_canvas.width = 1024
+						circle_canvas.height = 1024
 
-              <div id="About" >
-                <h2 style="padding-left: 0px;">About</h2>
-                <div style="
-                      font-size: calc((1.2 - 1) * 1.2vh + 1rem);
-                      margin-top: 2rem;
-                      margin-right: 0px;
-                      margin-bottom: 0rem;
-                      margin-left: 0px;
-                      max-width: 1000px;
-                      height: auto;
-                      padding-right: 6vw;">
-                <p>
-                  3dfine.art is an initiative of Electronic Systems Design SA de CV. 
-                </p>
-                <p>AR Experiences are licensed under CC BY 4.0. Other site contents Copyright 2021</p>
-                </div>
-                </div>
-              
+						// Draw Image function
+						var img = new Image();
+						img.src = imagePath;
+						img.onload = function () {
+							context.scale(2,2)
+							context.drawImage(img, 0, 0);
+							context.lineWidth = 1;
+							context.fillStyle = "#000000";
+							context.lineStyle = "#000000";
+							context.textAlign = align
+							context.scale(1,-1)
+							context.font = weight + " normal "+ fontsize0 +"px "+ fontfamily +",sans-serif";
+							context.fillText(text0, x, -y);
+							context.font = weight + " normal "+ fontsize1 +"px "+ fontfamily +",sans-serif";
+							context.fillText(text1, x, -y+64);
+							context.font = weight + " normal "+ fontsize1 +"px "+ fontfamily +",sans-serif";
+							context.fillText(text2, x, -y+100);
+							context.font = weight + " normal "+ fontsize1 +"px "+ fontfamily +",sans-serif";
+							context.fillText(text3, x, -y+136);
+							context.font = weight + " normal "+ fontsize1 +"px "+ fontfamily +",sans-serif";
+							context.fillText(text4, x, -y+172);
+							context.font = weight + " normal "+ fontsize2 +"px "+ fontfamily +",sans-serif";
+							context.fillText(text5, x, -y+230);
+							context.restore();
+							
+							//console.log(context.font);
+							resolve();
+						};
+					})}
 
-                
-            </div>
+					//console.log(text0);
+					await addTextToImage(imagePath, text0, text1=text1, text2=text2, text3=text3, text4=text4, text5=text5)
 
-            <div class="fb-share-button" data-href="https://3dfine.art" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2F3dfine.art%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
- 
-            
-		</div>
+					var canvas = document.getElementById("canvas");
+					var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+
+					//console.log(image);
+
+					var element = document.getElementById("imagen");
+					element.src = image
+
+				}
+
+			</script>
+
+			<script>
+
+				function downloadUSDZ(data, filename, type) {
+					var file = new Blob([data], {type: type});
+					if (window.navigator.msSaveOrOpenBlob) // IE10+
+						window.navigator.msSaveOrOpenBlob(file, filename);
+					else { // Others
+						const a = document.createElement("a");
+								if (a.relList.supports("ar")) { // esto debe ir directamente al generar el modelo para el caso de dispositivos con AR ... revisar caso si quiere enviar a otro dispositivo.
+									url = URL.createObjectURL(file);
+									document.getElementById("modelviewer").setAttribute("ios-src", url);
+									document.getElementById("annotation").innerHTML="Customization Ready, Model Ready to Preview in AR";
+								} else {
+									url = URL.createObjectURL(file);
+									a.href = url;
+									a.download = filename;
+									document.body.appendChild(a);
+									a.click();
+									setTimeout(function() {
+										document.body.removeChild(a);
+										window.URL.revokeObjectURL(url);  
+									}, 0); 
+									document.getElementById("modelviewer").setAttribute("ios-src", url);
+									document.getElementById("annotation").innerHTML="Customization Ready, Model Downloaded.";
+								}
+					}
+				}
+
+				function loadBlob(filePath) {
+					return new Promise(resolve =>{
+						var result = null;
+						var xmlhttp = new XMLHttpRequest();
+						xmlhttp.open("GET", filePath, true);
+						xmlhttp.responseType = "arraybuffer";
+
+						xmlhttp.onload = function (oEvent) {
+							var arrayBuffer = xmlhttp.response;
+
+							resolve(arrayBuffer)
+						}
+						
+						xmlhttp.send(null);
+					}
+					)
+				}
+
+				async function generaUSDZ_C() {
+
+					document.getElementById("annotation").innerHTML="Customization In Progress ...";
+
+					var canvas = document.getElementById("canvas");
+
+					var tempCanvas = document.createElement("canvas"),
+					tempCtx = tempCanvas.getContext("2d");
+
+					tempCanvas.width = canvas.width;
+					tempCanvas.height = canvas.height;
+					tempCtx.translate(canvas.width/2,canvas.height/2+30);
+					tempCtx.rotate(180 * Math.PI / 180);
+					tempCtx.drawImage(canvas,-canvas.width/2,-canvas.height/2);
+					// put our data onto the temp canvas
+					//tempCtx.drawImage(canvas,0,0,canvas.width,canvas.height);
+					tempCtx.restore();
+					
+					var image = tempCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+
+					generateGLB('/exps/0001/glb/exp0001.glb', image);
+
+					var zip2 = new JSZip();
+					zip2.file("3DfineArtFlyFree.usdc",await loadBlob("/exps/0001/usdc/exp0001_m.usdc"))
+
+					zip2.file("0/music.mp3", await loadBlob("/exps/0001/usdc/0/music.mp3"))
+
+					zip2.file("1/texgen_10.png", await loadBlob(image))
+					zip2.file("1/texgen_11.png", await loadBlob("/exps/0001/usdc/1/texgen_11.png"))
+
+					/*
+					zip2.file("1/mat1_baseColor.jpg", await loadBlob("./experiences/0001/1/mat1_baseColor.jpg"))
+					zip2.file("1/phong1_baseColor.jpg", await loadBlob("./experiences/0001/1/phong1_baseColor.jpg"))
+					zip2.file("1/phong1_metallicRoughness_metal.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_metal.jpg"))
+					zip2.file("1/phong1_metallicRoughness_rough_scale0.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough_scale0.jpg"))
+					zip2.file("1/phong1_metallicRoughness_rough_scale1.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough_scale1.jpg"))
+					zip2.file("1/phong1_metallicRoughness_rough_scale2.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough_scale2.jpg"))
+					zip2.file("1/phong1_metallicRoughness_rough.jpg", await loadBlob("./experiences/0001/1/phong1_metallicRoughness_rough.jpg"))
+					*/
+
+					zip2.generateAsync({type:"blob"})
+						.then(function (blob) {
+
+							// Reportar Conversión
+							//gtag_report_conversion()
+
+							const a = document.createElement("a");
+								if (a.relList.supports("ar")) {
+								// AR is available.
+
+								/*
+									console.log("AR disponible");
+
+									var file = new Blob([blob], {type:"model/vnd.usdz+zip"});
+									var url = URL.createObjectURL(file);
+
+									var elementAR = document.getElementById("usdzPlacer");
+									elementAR.rel = "ar"
+									elementAR.href = url
+
+									document.getElementById("blob").innerHTML = "Remake 3D Model";
+									document.getElementById("blob").style.color = "black";
+									document.getElementById("blob").disabled = false;
+									document.getElementById("tarjeta").disabled = false;
+
+									document.getElementById("descarga").onclick = function(event) {
+										downloadX(blob, "regalAR.usdz", "model/vnd.usdz+zip");
+									}
+									*/
+									document.getElementById("descargaUSDZ").onclick = function(event) {
+										downloadUSDZ(blob, "3DfineArtFlyFree.usdz", "model/vnd.usdz+zip");
+									}
+
+									document.getElementById("descargaUSDZ").hidden = false;
+									//document.getElementById("descargaUSDZ").innerHTML = "Listo";
+
+								} else {
+									console.log("AR NO disponible");
+
+									document.getElementById("descargaUSDZ").onclick = function(event) {
+										downloadUSDZ(blob, "3DfineArtFlyFree.usdz", "model/vnd.usdz+zip");
+									}
+
+									document.getElementById("descargaUSDZ").hidden = false;
+									
+								}
+							console.log("OK");
+							document.getElementById("annotation").innerHTML="Your own AR Experience";
+							document.getElementById('step3').className = "icon solid fa-check-square";
+						});
+				}
+
+			</script>
+
+			<script type="module">
+
+				//import {Scene} from '/build/three.module.js';
+
+				//import { GLTFLoader } from '/jsm/loaders/GLTFLoader.js';
+				//import { GLTFExporter } from '/jsm/exporters/GLTFExporter.js';
+
+			</script>
 
 
-</body>
+	</body>
 </html>

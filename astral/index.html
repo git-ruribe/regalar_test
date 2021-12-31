@@ -30,6 +30,7 @@
 			transform: translate(10px, 10px);
 			border-radius: 10px;
 			padding: 10px;
+			font-size: 3vw;
 		}
 		/* This keeps child nodes hidden while the element loads */
 		:not(:defined) > * {
@@ -199,7 +200,7 @@
 												<input type="text" id="bottom" name="bottom" placeholder="Footer (17 chars)" maxlength="15" onchange="cardchange()"/>
 											</div>
 											<div class="col-12">
-												<input type="button" value="Attach the Card to AR Experience " onclick="messageWriten()"/>
+												<input id="writeCard" type="button" value="Attach the Card to AR Experience " onclick="messageWriten()"/>
 											</div>
 											
 									</div>
@@ -226,7 +227,7 @@
 							<div id="step3" class="icon fa-square"><span>&ensp; Custom AR Experience Ready</span></div>
 
 
-							<model-viewer id="modelviewer" autoplay src="/exps/0001/gltf/exp0001.gltf"
+							<model-viewer id="modelviewer" autoplay src="/exps/0001/glb/exp0001.glb"
 								ios-src="/exps/0001/usdz/exp0001_m.usdz"
 								alt="Augmented Reality Experience - Butterfly in a Music Box"
 								ar
@@ -235,17 +236,22 @@
 								camera-controls
 								poster="/thumbnails/0001.jpg">
 
-								<div id="annotation">Customizing not started.</div>
+								<div id="annotation">Generic AR Experience</div>
 
 							</model-viewer>
 
-							<div class="col-12">
-								<input type="button" value="Remake AR Experience " onclick="generaUSDZ_C()"/>
+							<div id="descargaUSDZ" hidden>
+								Your AR Experience is for you to keep.
+								<button>Download GLB file<br>(you can use our online viewer)</button>
+								<br><br>
+								<button>Download USDZ file<br>(to view on iPhone)</button>
 							</div>
+							<br>
+
+							<!--<button hidden id="descargaUSDZ">Download USDZ</button>-->
 
 							<br>
 
-							<button id="descargaUSDZ" disabled>Descarga USDZ</button>
 							<!-- 
 							<section>
 								<div class="row" style="padding-top: 20px;">
@@ -286,10 +292,111 @@
 			<script type="module">
 
 				import '/jszip/jszip.js';
+
+				import {Scene} from '/build/three.module.js';
+
+				import { GLTFLoader } from '/jsm/loaders/GLTFLoader.js';
+				import { GLTFExporter } from '/jsm/exporters/GLTFExporter.js';
+
+				function save( blob, filename ) {
+
+				//link.href = URL.createObjectURL( blob );
+				//link.download = filename;
+				//link.click();
+
+				// URL.revokeObjectURL( url ); breaks Firefox...
+
+				//https://www.creators3d.com/online-viewer sirve para "debuggear"
+
+				document.getElementById("modelviewer").setAttribute("src",  URL.createObjectURL( blob ));
+				document.getElementById("annotation").innerHTML = "Working on it ...";
+
+				}
+
+				function saveString( text, filename ) {
+
+					save( new Blob( [ text ], { type: 'text/plain' } ), filename );
+
+				}
+
+				function saveArrayBuffer( buffer, filename ) {
+
+					save( new Blob( [ buffer ], { type: 'application/octet-stream' } ), filename );
+
+				}
+
+				function exportGLTF( input, animations ) {
+
+					const gltfExporter = new GLTFExporter();
+
+					console.log(animations)
+
+					const options = {
+						trs: false,
+						onlyVisible: true,
+						truncateDrawRange: true,
+						binary: true,
+						maxTextureSize: Infinity, // To prevent NaN value,
+						animations: animations
+					};
+					gltfExporter.parse(
+						input,
+						function ( result ) {
+
+							if ( result instanceof ArrayBuffer ) {
+
+								saveArrayBuffer( result, 'scene.glb' );
+
+							} else {
+
+								const output = JSON.stringify( result, null, 2 );
+								console.log( output );
+								saveString( output, 'scene.gltf' );
+
+							}
+
+						},
+						function ( error ) {
+
+							console.log( 'An error happened during parsing', error );
+
+						},
+						options
+					);
+
+				}
+
+				// para que la función pueda ser accesible afuera del módulo se pone window
+				window.generateGLB = function(glbFile, imagen) { 
+					const scene = new Scene();
+					
+					const loader = new GLTFLoader();
+
+					loader.load( glbFile, function ( gltf ) {
+
+						const model = gltf.scene;
+
+						scene.add( model );
+
+						var img = new Image();
+							img.src = imagen;
+							img.onload = function () {
+							scene.children[0].children[3].children[0].material.map.image=img;
+							scene.children[0].children[3].children[0].material.map.needsUpdate=true;
+
+							exportGLTF(scene, gltf.animations);
+								}
+						}, undefined, function ( e ) {
+						console.error( e );
+					} );
+				}
+
 	
 			</script>
 
 			<script>
+
+				//x = createScene(); esto va dar error porque no se carga rápido el módulo arriba
 
 				var selected = '0000'
 				var title = ''
@@ -316,9 +423,11 @@
 					
 				}
 
-				function messageWriten() {
+				async function messageWriten() {
 					document.getElementById('step2').className = "icon solid fa-check-square";
 					window.location.hash = '#getAR';
+					await cardchange();
+					generaUSDZ_C();
 				}
 
 				async function cardchange() {
@@ -371,7 +480,7 @@
 							context.restore();
 							
 							//console.log(context.font);
-							resolve()
+							resolve();
 						};
 					})}
 
@@ -385,7 +494,6 @@
 
 					var element = document.getElementById("imagen");
 					element.src = image
-
 
 				}
 
@@ -457,6 +565,8 @@
 					
 					var image = tempCanvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
 
+					generateGLB('/exps/0001/glb/exp0001.glb', image);
+
 					var zip2 = new JSZip();
 					zip2.file("3DfineArtFlyFree.usdc",await loadBlob("/exps/0001/usdc/exp0001_m.usdc"))
 
@@ -508,8 +618,8 @@
 										downloadUSDZ(blob, "3DfineArtFlyFree.usdz", "model/vnd.usdz+zip");
 									}
 
-									document.getElementById("descargaUSDZ").disabled = false;
-									document.getElementById("descargaUSDZ").innerHTML = "Listo";
+									document.getElementById("descargaUSDZ").hidden = false;
+									//document.getElementById("descargaUSDZ").innerHTML = "Listo";
 
 								} else {
 									console.log("AR NO disponible");
@@ -518,15 +628,26 @@
 										downloadUSDZ(blob, "3DfineArtFlyFree.usdz", "model/vnd.usdz+zip");
 									}
 
-									document.getElementById("descargaUSDZ").disabled = false;
+									document.getElementById("descargaUSDZ").hidden = false;
 									
 								}
 							console.log("OK");
-							document.getElementById("annotation").innerHTML="Customization Ready";
+							document.getElementById("annotation").innerHTML="Your own AR Experience";
+							document.getElementById('step3').className = "icon solid fa-check-square";
 						});
 				}
 
 			</script>
+
+			<script type="module">
+
+				//import {Scene} from '/build/three.module.js';
+
+				//import { GLTFLoader } from '/jsm/loaders/GLTFLoader.js';
+				//import { GLTFExporter } from '/jsm/exporters/GLTFExporter.js';
+
+			</script>
+
 
 	</body>
 </html>
