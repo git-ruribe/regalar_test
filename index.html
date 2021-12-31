@@ -294,11 +294,13 @@
 							</header>
                             <div class="row">
                                 <div class="col-12">
-                                    <input type="file" id="fileInput" onchange="fileUploaded()"/>
+                                    <input type="file" accept=".glb" id="fileInput" onchange="fileUploaded()"/>
                                 </div>
-                                <div id="debug">
+                                
+                                <!--<div id="debug">
                                     Debug
                                 </div>
+                            -->
                             </div>
 
                             <model-viewer id="modelviewer2" autoplay src=""
@@ -335,7 +337,7 @@
 
                 const selectedFile = fileInput.files[0];
                 console.log(selectedFile);
-                document.getElementById("debug").innerHTML = selectedFile.type;
+                //document.getElementById("debug").innerHTML = selectedFile.type;
                 if (selectedFile.type == "model/gltf+json" || selectedFile.type == "model/gltf-binary" || true) {
                     console.log('Archivo correcto');
                     var reader = new FileReader();
@@ -343,7 +345,7 @@
                     reader.onload = function (evt) {
 
                         console.log(evt.target.result);
-                        document.getElementById("debug").innerHTML = document.getElementById("debug").innerHTML + "  " + evt.target.result.substring(0, 50);
+                        //document.getElementById("debug").innerHTML = document.getElementById("debug").innerHTML + "  " + evt.target.result.substring(0, 50);
                         document.getElementById("modelviewer2").setAttribute("src", evt.target.result);
                     }
                     reader.onerror = function (evt) {
