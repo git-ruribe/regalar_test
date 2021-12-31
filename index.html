@@ -260,11 +260,11 @@
                                 </div>
                                 <div class="col-12">
                                     To view in our online viewer.<br>
-								    <a id="dwnldGLB" style="width: 80vw;">Download GLB file.</a>
+								    <a id="dwnldGLB">Download GLB file.</a>
                                 </div>
 								<div class="col-12">
-                                    To view in iPhone or iPad.
-                                    <input id="descargaUSDZ" style="width: 80vw;" type="button" value="Download USDZ file (to view on iPhone)"/>
+                                    To view in iPhone or iPad.<br>
+                                    <a id="dwnldUSDZ">Download USDZ file.</a>
                                 </div>
 							</div>
                             </div>
@@ -417,7 +417,7 @@
 
 							if ( result instanceof ArrayBuffer ) {
 
-								saveArrayBuffer( result, 'scene.glb' );
+								saveArrayBuffer( result, '3Dfineart_FlyFree.glb' );
 
 							} else {
 
@@ -663,11 +663,20 @@
 							// Reportar Conversión
 							//gtag_report_conversion()
 
-							const a = document.createElement("a");
+							const a = document.getElementById("dwnldUSDZ");
+
+                            var file = new Blob( [blob], { type:"model/vnd.usdz+zip"} )
+                            //var file = new Blob(contents, '3Dfineart_FlyFree.usdz');
+							var url = URL.createObjectURL(file);
+
+                            a.setAttribute("download","3Dfineart_FlyFree.usdz");
+                            a.href = url
+
+/*
 								if (a.relList.supports("ar")) {
 								// AR is available.
 
-								/*
+								
 									console.log("AR disponible");
 
 									var file = new Blob([blob], {type:"model/vnd.usdz+zip"});
@@ -685,7 +694,7 @@
 									document.getElementById("descarga").onclick = function(event) {
 										downloadX(blob, "regalAR.usdz", "model/vnd.usdz+zip");
 									}
-									*/
+									
 									document.getElementById("descargaUSDZ").onclick = function(event) {
 										downloadUSDZ(blob, "3DfineArtFlyFree.usdz", "model/vnd.usdz+zip");
 									}
@@ -703,6 +712,8 @@
 									document.getElementById("downloads").hidden = false;
 									
 								}
+                                */
+                            document.getElementById("downloads").hidden = false;
 							console.log("OK");
 							document.getElementById("annotation").innerHTML="Your own AR Experience";
 							document.getElementById('step3').className = "icon solid fa-check-square";
