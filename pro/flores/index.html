@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+
+        <title>Flores Ejemplo</title>
+		<meta charset="utf-8" />
+
+        <!-- https://developers.google.com/ar/develop/webxr/model-viewer -->
+		<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+        <link rel="stylesheet" href="/oep8ygu.css"> 
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-5MRSZFMLLX"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-5MRSZFMLLX');
+        gtag('config', 'UA-176287415-1');
+        gtag('config', 'AW-10830928366');
+        </script>
+
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-TD3RGQW');</script>
+            <!-- End Google Tag Manager -->
+
+    </head>
+
+    <style>
+        model-viewer {
+          width: 90%;
+          height: 60vh;
+        }
+        </style>
+
+    <body>
+
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TD3RGQW"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <!-- End Google Tag Manager (noscript) -->
+
+        <div style="text-align: center; 
+        font-family: orpheuspro, serif;
+        font-weight: 700;
+        font-style: normal;
+        ; font-size: 4vh; padding-top: 5vh ; padding-left: 4vw; padding-right: 4vw; height: 20vh;">
+                Flores Ejemplo
+        </div>
+
+        <model-viewer autoplay src="ejemplo1.glb"
+            alt="Vase with pink flowers"
+            ar
+            autoplay
+            ar-modes="webxr scene-viewer quick-look" 
+            ios-src="ejemplo1.usdz"
+            auto-rotate
+            camera-controls
+            poster="ejemplo1.png">
+            <button id="ARopen" slot="ar-button" style="background-color: rgb(230, 230, 230); border-radius: 4px; 
+                border: none; position: absolute; bottom: 30px; left: 16px; 
+                font-size: 4vw;">
+                👋 Activar AR
+            </button>
+        </model-viewer>
+
+       
+    <div style="text-align: center; font-size: 2vh; padding-bottom: 5vh; padding-left: 4vw; padding-right: 4vw; height: 20vh;">
+        <p> Experiencia AR creada por: 
+            <a href="mailto: 3dfineart.esd.mx">3dfine.art</a> 
+        </p>
+        <!--<button id="btnTest" onclick="document.getElementById('btnTest').hidden='true'">Test</button>-->
+    </div>
+
+
+    </body>   
+
+</html>
