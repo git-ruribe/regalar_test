@@ -23,7 +23,7 @@
           <div class="update-bar"></div>
       </div>
       <button slot="ar-button" id="ar-button">
-        Ver en tu espacio
+        Ver en AR
       </button>
       <div id="ar-prompt">
           <img src="ar_hand_prompt.png">
@@ -51,7 +51,7 @@
       window.switchSrc = (element, name) => {
         const base = "" + name;
         modelViewer.src = base + '.glb';
-        modelViewer['ios-src'] = base + '.usdz';
+        modelViewer.iosSrc = base + '.usdz';
         modelViewer.poster = base + '.png';
         const slides = document.querySelectorAll(".slide");
         slides.forEach((element) => {element.classList.remove("selected");});
